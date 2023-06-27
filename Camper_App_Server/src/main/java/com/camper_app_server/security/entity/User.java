@@ -52,14 +52,15 @@ public class User {
 	private String email;
 	@Column(nullable = false)
 	private String password;
-	@Column(nullable = false)
-	private String contactPhone;
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 	private Set<Role> roles = new HashSet<>();
+	
+	@OneToMany
+	private List<Facility> preference;
 	// @ManyToMany(targetEntity = Prenotazione.class, fetch = FetchType.EAGER)
 	// @JoinTable(name = "prenotazioni_lista_utenti", joinColumns = @JoinColumn(name
-	// = "utente_id"), inverseJoinColumns = @JoinColumn(name = "prenotazione_id"))
+	// = "utente_id "), inverseJoinColumns = @JoinColumn(name = "prenotazione_id"))
 	// @JsonIgnore
 	// private List<?> listaPrenotazioni = new ArrayList(null)<?>();
 

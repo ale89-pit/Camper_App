@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.camper_app_server.enumerated.ERole;
 import com.camper_app_server.security.entity.Role;
 import com.camper_app_server.security.entity.User;
+import com.camper_app_server.security.exception.MyAPIException;
 import com.camper_app_server.security.payload.LoginDto;
 import com.camper_app_server.security.payload.RegisterDto;
 import com.camper_app_server.security.repository.RoleDAO;
@@ -60,16 +61,14 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public String register(RegisterDto registerDto) {
 
-        // add check for username exists in database
+//         add check for username exists in database
         if (userRepository.existsByUserName(registerDto.getUserName())) {
-            // throw new MyAPIException(HttpStatus.BAD_REQUEST, "Username is already
-            // exists!.");
+             throw new MyAPIException(HttpStatus.BAD_REQUEST, "Username is already exists!");
         }
 
         // add check for email exists in database
         if (userRepository.existsByEmail(registerDto.getEmail())) {
-            // throw new MyAPIException(HttpStatus.BAD_REQUEST, "Email is already
-            // exists!.");
+             throw new MyAPIException(HttpStatus.BAD_REQUEST, "Email is already exists!.");
         }
 
         User user = new User();
@@ -77,7 +76,6 @@ public class AuthServiceImpl implements AuthService {
         user.setCognome(registerDto.getCognome());
         user.setUserName(registerDto.getUserName());
         user.setEmail(registerDto.getEmail());
-        user.setContactPhone((registerDto.getContactPhone()));
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
 
         Set<Role> roles = new HashSet<>();

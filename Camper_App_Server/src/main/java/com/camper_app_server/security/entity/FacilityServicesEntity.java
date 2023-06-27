@@ -19,7 +19,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "service")
-public class FacilityServices {
+public class FacilityServicesEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

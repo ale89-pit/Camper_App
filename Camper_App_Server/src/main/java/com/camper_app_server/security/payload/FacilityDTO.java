@@ -1,6 +1,9 @@
 package com.camper_app_server.security.payload;
 
+import java.util.List;
 import java.util.Set;
+
+import com.camper_app_server.enumerated.FacilityType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,10 +16,14 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class UtenteDTO {
-	private String nome;
-	private String cognome;
-	private String userName;
-	private String email;
+public class FacilityDTO {
+	
+	private String name;
+	private String description;
+	private String phoneNumber;
+	private String webSite;
+	private Set<Long> service;
+	private FacilityType type;
+	
 
 }

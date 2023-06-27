@@ -41,11 +41,16 @@ public class Facility {
 	@Column(unique = true, nullable = false)
 	private String phoneNumber;
 	
+	@Column(name="url")
+	private String cover;
+	
+	@Column(name ="website")
+	private String officialSite;
 	@Enumerated(EnumType.STRING)
 	private FacilityType facilityType;
 	
 	@OneToMany
-	private Set<FacilityServices> serviceFacility;
+	private Set<FacilityServicesEntity> serviceFacility;
 	
 	@OneToMany
 	private List<Comment> comment;

@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component;
 import com.camper_app_server.enumerated.ERole;
 import com.camper_app_server.enumerated.EServiceFacility;
 import com.camper_app_server.repositories.FacilityServiceRepository;
-import com.camper_app_server.security.entity.FacilityServices;
+
+import com.camper_app_server.security.entity.FacilityServicesEntity;
 import com.camper_app_server.security.entity.Role;
 import com.camper_app_server.security.repository.RoleDAO;
 import com.camper_app_server.security.repository.UtenteDAO;
@@ -80,39 +81,39 @@ public class AuthRunner implements ApplicationRunner {
 	}
 	
 	public void setServiceFacility() {
-		FacilityServices elec = new FacilityServices();
+		FacilityServicesEntity elec = new FacilityServicesEntity();
 		elec.setService(EServiceFacility.ELECTRICITY);
 		facilitiServiceRepository.save(elec);
 		
-		FacilityServices shower = new FacilityServices();
+		FacilityServicesEntity shower = new FacilityServicesEntity();
 		shower.setService(EServiceFacility.SHOWER);
 		facilitiServiceRepository.save(shower);
 		
-		FacilityServices hotShower = new FacilityServices();
+		FacilityServicesEntity hotShower = new FacilityServicesEntity();
 		hotShower.setService(EServiceFacility.HOT_SHOWER);
 		facilitiServiceRepository.save(hotShower);
 		
-		FacilityServices toilette = new FacilityServices();
+		FacilityServicesEntity toilette = new FacilityServicesEntity();
 		toilette.setService(EServiceFacility.TOILETTE);
 		facilitiServiceRepository.save(toilette);
 		
-		FacilityServices wifi = new FacilityServices();
+		FacilityServicesEntity wifi = new FacilityServicesEntity();
 		wifi.setService(EServiceFacility.WI_FI);
 		facilitiServiceRepository.save(wifi);
 		
-		FacilityServices keptNight = new FacilityServices();
+		FacilityServicesEntity keptNight = new FacilityServicesEntity();
 		keptNight.setService(EServiceFacility.KEPT_NIGHT);
 		facilitiServiceRepository.save(keptNight );
 		
-		FacilityServices toiletteFlush = new FacilityServices();
+		FacilityServicesEntity toiletteFlush = new FacilityServicesEntity();
 		toiletteFlush.setService(EServiceFacility.TOLIETTE_FLUSH);
 		facilitiServiceRepository.save(toiletteFlush);
 		
-		FacilityServices nauticFlush = new FacilityServices();
+		FacilityServicesEntity nauticFlush = new FacilityServicesEntity();
 		nauticFlush.setService(EServiceFacility.NAUTICAL_TOILETTE_FLUSH);
 		facilitiServiceRepository.save(nauticFlush);
 		
-		FacilityServices market = new FacilityServices();
+		FacilityServicesEntity market = new FacilityServicesEntity();
 		market.setService(EServiceFacility.MARKET);
 		facilitiServiceRepository.save(market);
 
