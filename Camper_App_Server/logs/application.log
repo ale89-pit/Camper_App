@@ -411,3 +411,27 @@
 11:47:04.638 [Thread-11] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 11:47:04.638 [Thread-11] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown initiated...
 11:47:04.639 [Thread-11] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown completed.
+11:47:04.679 [restartedMain] INFO  c.c.CamperAppServerApplication - Starting CamperAppServerApplication using Java 17.0.7 with PID 14804 (C:\Users\Aless\Desktop\Camper_App\Camper_App_Server\target\classes started by Aless in C:\Users\Aless\Desktop\Camper_App\Camper_App_Server)
+11:47:04.679 [restartedMain] INFO  c.c.CamperAppServerApplication - No active profile set, falling back to 1 default profile: "default"
+11:47:04.786 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11:47:04.796 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 10 ms. Found 3 JPA repository interfaces.
+11:47:04.857 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+11:47:04.858 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+11:47:04.858 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.10]
+11:47:04.871 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+11:47:04.871 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 191 ms
+11:47:04.899 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+11:47:04.904 [restartedMain] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+11:47:04.904 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+11:47:04.905 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Starting...
+11:47:04.937 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-4 - Added connection org.postgresql.jdbc.PgConnection@4e96b82e
+11:47:04.937 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Start completed.
+11:47:04.955 [restartedMain] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+11:47:04.987 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+11:47:05.039 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11:47:05.146 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11:47:05.228 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@f25942c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@22403fd5, org.springframework.security.web.context.SecurityContextHolderFilter@5b8c141a, org.springframework.security.web.header.HeaderWriterFilter@2855b354, org.springframework.web.filter.CorsFilter@6c8b71c5, org.springframework.security.web.authentication.logout.LogoutFilter@759b0a6f, com.camper_app_server.security.security.JwtAuthenticationFilter@38b8e166, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3bd9716a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3e93aa56, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@17c81874, org.springframework.security.web.session.SessionManagementFilter@5a65515d, org.springframework.security.web.access.ExceptionTranslationFilter@1c6f8b5a, org.springframework.security.web.access.intercept.AuthorizationFilter@26dbbc7c]
+11:47:05.283 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+11:47:05.290 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+11:47:05.292 [restartedMain] INFO  c.c.CamperAppServerApplication - Started CamperAppServerApplication in 0.627 seconds (process running for 484.339)
+11:47:05.296 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
