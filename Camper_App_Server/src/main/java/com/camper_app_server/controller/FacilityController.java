@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,5 +41,10 @@ public class FacilityController {
 	public ResponseEntity<?> insertFacility(@RequestBody FacilityDTO f){
 		return ResponseEntity.ok(facilityService.insertFacility(f));
 		
+	}
+	@PutMapping("/{facility_id}")
+	@PreAuthorize("hasRole('USER')")
+	public ResponseEntity<?> updateFacility(@PathVariable Long facility_id,@RequestBody FacilityDTO f){
+		return ResponseEntity.ok(facilityService.updateFacility(facility_id, f));
 	}
 }

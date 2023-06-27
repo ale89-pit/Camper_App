@@ -6,6 +6,7 @@ import java.util.Set;
 import com.camper_app_server.enumerated.FacilityType;
 import com.camper_app_server.enumerated.EServiceFacility;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -49,7 +50,7 @@ public class Facility {
 	@Enumerated(EnumType.STRING)
 	private FacilityType facilityType;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private Set<FacilityServicesEntity> serviceFacility;
 	
 	@OneToMany

@@ -45,6 +45,7 @@ public class FacilityService {
 		insert.setDescription(f.getDescription());
 		insert.setPhoneNumber(f.getPhoneNumber());
 		insert.setFacilityType(f.getType());
+		insert.setOfficialSite(f.getWebSite());
 
 //		Qui inserisco solo l'id del servizio assiociato alla tabella service per implementarlo al set di servizi di ogni struttura
 		f.getService().forEach(a -> {
@@ -56,10 +57,73 @@ public class FacilityService {
 		facilityRepository.save(insert);
 		return ResponseEntity.ok("Struttura aggiunta correttamente");
 	}
-	
-//	public ResponseEntity<String> updateFacility(Long id,FacilityDTO f){
-//		
-//		
-//	}
 
+	public ResponseEntity<String> updateFacility(Long id,FacilityDTO f){
+			if (!facilityRepository.existsById(id)) {
+				throw new MyAPIException(HttpStatus.NOT_FOUND, "nessuna struttura trovata");
+			}
+			
+			Facility old = facilityRepository.findById(id).get();
+			
+			old.setName(f.getName());
+			old.setDescription(f.getDescription());
+			old.setPhoneNumber(f.getPhoneNumber());
+			old.setOfficialSite(f.getWebSite());
+			old.setFacilityType(f.getType());
+			//Confronto la lista di servizi salvata con quella che gli passa l'utente
+	//		se ha gli stessi id rimane invariata, mentre se ce ne sono di meno vengono eliminati e se ce ne sono di piu aggiunti.
+			Set<Long> actualId = new HashSet<>(); 
+			old.getServiceFacility().forEach(a->{
+				System.out.println(a.getId());
+				actualId.add(a.getId());
+				System.out.println(actualId);
+			});
+			
+			Set<FacilityServicesEntity> actualService = new HashSet<>();
+//			if(!f.getService().containsAll(actual)){
+				if(f.getService().size()<actualId.size()) {
+					System.out.println("sto nella prima condizione");
+					for (Long ser : f.getService()) {
+						
+						
+						for(Long act:actualId) {
+							
+							
+							if(ser.equals(act)) {
+								FacilityServicesEntity s = facilityServiceRepository.findById(ser).get();
+								actualService.add(s);
+//								System.out.println("sto nella prima condizione");
+							}else {
+								FacilityServicesEntity s = facilityServiceRepository.findById(ser).get();
+								actualService.add(s);
+							}
+						}
+					}
+					old.setServiceFacility(actualService);
+					facilityRepository.save(old);
+				}else if(f.getService().size()>actualId.size()) {
+					for (Long ser : f.getService()) {
+//						System.out.println("sto nella prima condizione");
+					
+						for(Long act:actualId) {
+						
+							
+							if(ser == act) {
+								System.out.println("confronto id" + act + "" + ser );
+								FacilityServicesEntity s = facilityServiceRepository.findById(ser).get();
+								actualService.add(s);
+//								System.out.println("sto nella prima condizione");
+							}else {
+								FacilityServicesEntity s = facilityServiceRepository.findById(ser).get();
+								actualService.remove(s);
+						}
+					}
+				}
+			}
+				old.setServiceFacility(actualService);
+				facilityRepository.save(old);
+//		}
+			
+			return ResponseEntity.ok("Struttura aggiornata");
+	}
 }
