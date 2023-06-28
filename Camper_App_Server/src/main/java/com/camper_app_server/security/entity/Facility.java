@@ -57,7 +57,7 @@ public class Facility {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<FacilityServicesEntity> serviceFacility;
-	
-	@OneToMany(fetch = FetchType.EAGER,targetEntity = Comment.class)
-	private List<Comment> comment;
+//	
+//	@OneToMany(fetch = FetchType.EAGER,targetEntity = Comment.class)
+//	private List<Comment> comment;
 }
