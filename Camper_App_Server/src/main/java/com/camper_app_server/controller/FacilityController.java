@@ -48,10 +48,10 @@ public class FacilityController {
 	public ResponseEntity<?> updateFacility(@PathVariable Long facility_id,@RequestBody FacilityDTO f){
 		return ResponseEntity.ok(facilityService.updateFacility(facility_id, f));
 	}
-//	@DeleteMapping("/{facility_id}")
-//	@PreAuthorize("hasRole('ADMIN')")
-//	public ResponseEntity<String> deleteFacility(@PathVariable Long facility_id){
-//		facilityService.deleteFacility(facility_id);
-//		return ResponseEntity.ok("Struttura Eliminata");
-//	}
+	@DeleteMapping("/{facility_id}")
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<String> deleteFacility(@PathVariable Long facility_id){
+		facilityService.deleteFacility(facility_id);
+		return ResponseEntity.ok("Struttura Eliminata");
+	}
 }

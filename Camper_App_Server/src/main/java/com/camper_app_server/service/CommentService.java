@@ -31,23 +31,24 @@ public class CommentService {
 		;
 		return ResponseEntity.ok(commentRepository.findById(id));
 		}
-//	public ResponseEntity<?> insertComments(CommentDTO commentdto){
-//		if(!facilityRepository.existsById(commentdto.getFacility_id())) {
-//			throw new MyAPIException(HttpStatus.NOT_FOUND, "nessun commento trovato");
-//		}
-//		if(!userRepository.existsById(commentdto.getUser_id())) {
-//			throw new MyAPIException(HttpStatus.NOT_FOUND, "nessun commento trovato");
-//		}
-//		User u = userRepository.findById(commentdto.getUser_id()).get();
-//		Facility f = facilityRepository.findById(commentdto.getFacility_id()).get();
-//		Comment c = new Comment();
-//		c.setDate(LocalDate.now());
-//		c.setBody(commentdto.getBody());
-//		c.setTitle(commentdto.getTitle());
-//		c.setUser(u);
-//		c.setFacility(f);
-//		facilityService.addComment(commentdto.getFacility_id(), c);
-//		return ResponseEntity.ok("commento aggiunto");
-//	}
+	public ResponseEntity<?> insertComments(CommentDTO commentdto){
+		if(!facilityRepository.existsById(commentdto.getFacility_id())) {
+			throw new MyAPIException(HttpStatus.NOT_FOUND, "nessun commento trovato");
+		}
+		if(!userRepository.existsById(commentdto.getUser_id())) {
+			throw new MyAPIException(HttpStatus.NOT_FOUND, "nessun commento trovato");
+		}
+		User u = userRepository.findById(commentdto.getUser_id()).get();
+		Facility f = facilityRepository.findById(commentdto.getFacility_id()).get();
+		Comment c = new Comment();
+		c.setDate(LocalDate.now());
+		c.setBody(commentdto.getBody());
+		c.setTitle(commentdto.getTitle());
+		c.setUser(u);
+		c.setFacility(f);
+		Comment save = commentRepository.save(c);
+		facilityService.addComment(commentdto.getFacility_id(), save);
+		return ResponseEntity.ok("commento aggiunto");
+	}
 	
 }

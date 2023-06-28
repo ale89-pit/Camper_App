@@ -59,58 +59,88 @@ public class FacilityService {
 		return ResponseEntity.ok("Struttura aggiunta correttamente");
 	}
 
-	public ResponseEntity<String> updateFacility(Long id, FacilityDTO f) {
-		if (!facilityRepository.existsById(id)) {
-			throw new MyAPIException(HttpStatus.NOT_FOUND, "nessuna struttura trovata");
-		}
-
-		Facility old = facilityRepository.findById(id).get();
-
-		old.setName(f.getName());
-		old.setDescription(f.getDescription());
-		old.setPhoneNumber(f.getPhoneNumber());
-		old.setOfficialSite(f.getWebSite());
-		old.setFacilityType(f.getType());
-		// Confronto la lista di servizi salvata con quella che gli passa l'utente
-		// se ha gli stessi id rimane invariata, mentre se ce ne sono di meno vengono
-		// eliminati e se ce ne sono di piu aggiunti.
-		Set<FacilityServicesEntity> oldService = old.getServiceFacility();
-		System.out.println(oldService);
-
-		Set<FacilityServicesEntity> actualService = new HashSet<>();
-		f.getService().forEach(a -> {
-			FacilityServicesEntity s = facilityServiceRepository.findById(a).get();
-			actualService.add(s);
-		});
-		System.out.println(actualService);
+	public ResponseEntity<String> updateFacility(Long id,FacilityDTO f){
+			if (!facilityRepository.existsById(id)) {
+				throw new MyAPIException(HttpStatus.NOT_FOUND, "nessuna struttura trovata");
+			}
+			
+			Facility old = facilityRepository.findById(id).get();
+			
+			old.setName(f.getName());
+			old.setDescription(f.getDescription());
+			old.setPhoneNumber(f.getPhoneNumber());
+			old.setOfficialSite(f.getWebSite());
+			old.setFacilityType(f.getType());
+			//Confronto la lista di servizi salvata con quella che gli passa l'utente
+	//		se ha gli stessi id rimane invariata, mentre se ce ne sono di meno vengono eliminati e se ce ne sono di piu aggiunti.
+			Set<Long> actualId = new HashSet<>(); 
+			old.getServiceFacility().forEach(a->{
+				System.out.println(a.getId());
+				actualId.add(a.getId());
+				System.out.println(actualId);
+			});
+			
+			Set<FacilityServicesEntity> actualService = new HashSet<>();
 //			if(!f.getService().containsAll(actual)){
-//		 Controllo quale lista ha più elementi e a seconda di quale sia più grande aumento o diminuisco i servizi
-		if (actualService.size() > oldService.size()) {
-			oldService.addAll(actualService);
-			old.setServiceFacility(oldService);
-			facilityRepository.save(old);
-		} else if (actualService.size() < oldService.size())
-			oldService.retainAll(actualService);
-		old.setServiceFacility(oldService);
-		facilityRepository.save(old);
-//				
-
-		return ResponseEntity.ok("Struttura aggiornata");
+				if(f.getService().size()<actualId.size()) {
+					System.out.println("sto nella prima condizione");
+					for (Long ser : f.getService()) {
+						
+						
+						for(Long act:actualId) {
+							
+							
+							if(ser.equals(act)) {
+								FacilityServicesEntity s = facilityServiceRepository.findById(ser).get();
+								actualService.add(s);
+//								System.out.println("sto nella prima condizione");
+							}else {
+								FacilityServicesEntity s = facilityServiceRepository.findById(ser).get();
+								actualService.add(s);
+							}
+						}
+					}
+					old.setServiceFacility(actualService);
+					facilityRepository.save(old);
+				}else if(f.getService().size()>actualId.size()) {
+					for (Long ser : f.getService()) {
+//						System.out.println("sto nella prima condizione");
+					
+						for(Long act:actualId) {
+						
+							
+							if(ser == act) {
+								System.out.println("confronto id" + act + "" + ser );
+								FacilityServicesEntity s = facilityServiceRepository.findById(ser).get();
+								actualService.add(s);
+//								System.out.println("sto nella prima condizione");
+							}else {
+								FacilityServicesEntity s = facilityServiceRepository.findById(ser).get();
+								actualService.remove(s);
+						}
+					}
+				}
+			}
+				old.setServiceFacility(actualService);
+				facilityRepository.save(old);
+//		}
+			
+			return ResponseEntity.ok("Struttura aggiornata");
 	}
 	
-//	public ResponseEntity<String> deleteFacility(Long facilityId){
-//		if (!facilityRepository.existsById(facilityId)) {
-//			throw new MyAPIException(HttpStatus.NOT_FOUND, "nessuna struttura trovata");
-//		}
-//		
-//		Facility f = facilityRepository.findById(facilityId).get();
-//		facilityRepository.delete(f);
-//		return ResponseEntity.ok("Struttura eliminata");
-//	}
-//	public ResponseEntity<?> addComment(Long facilityId,Comment c){
-//		Facility f = facilityRepository.findById(facilityId).get();
-//		f.getComment().add(c);
-//		facilityRepository.save(f);
-//		return ResponseEntity.ok("commento aggiunto");
-//	}
+	public ResponseEntity<String> deleteFacility(Long facilityId){
+		if (!facilityRepository.existsById(facilityId)) {
+			throw new MyAPIException(HttpStatus.NOT_FOUND, "nessuna struttura trovata");
+		}
+		
+		Facility f = facilityRepository.findById(facilityId).get();
+		facilityRepository.delete(f);
+		return ResponseEntity.ok("Struttura eliminata");
+	}
+	public ResponseEntity<?> addComment(Long facilityId,Comment c){
+		Facility f = facilityRepository.findById(facilityId).get();
+		f.getComment().add(c);
+		facilityRepository.save(f);
+		return ResponseEntity.ok("commento aggiunto");
+	}
 }
