@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.camper_app_server.repositories.FacilityRepository;
 import com.camper_app_server.repositories.FacilityServiceRepository;
+import com.camper_app_server.security.entity.Comment;
 import com.camper_app_server.security.entity.Facility;
 import com.camper_app_server.security.entity.FacilityServicesEntity;
 import com.camper_app_server.security.exception.MyAPIException;
@@ -96,4 +97,20 @@ public class FacilityService {
 
 		return ResponseEntity.ok("Struttura aggiornata");
 	}
+	
+//	public ResponseEntity<String> deleteFacility(Long facilityId){
+//		if (!facilityRepository.existsById(facilityId)) {
+//			throw new MyAPIException(HttpStatus.NOT_FOUND, "nessuna struttura trovata");
+//		}
+//		
+//		Facility f = facilityRepository.findById(facilityId).get();
+//		facilityRepository.delete(f);
+//		return ResponseEntity.ok("Struttura eliminata");
+//	}
+//	public ResponseEntity<?> addComment(Long facilityId,Comment c){
+//		Facility f = facilityRepository.findById(facilityId).get();
+//		f.getComment().add(c);
+//		facilityRepository.save(f);
+//		return ResponseEntity.ok("commento aggiunto");
+//	}
 }

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.camper_app_server.enumerated.FacilityType;
-import com.camper_app_server.enumerated.EServiceFacility;
+
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -19,11 +19,15 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Entity
-@Data
+//@Data
+@Getter
+@Setter
 @Table(name="facilities")
 @NoArgsConstructor
 @AllArgsConstructor
