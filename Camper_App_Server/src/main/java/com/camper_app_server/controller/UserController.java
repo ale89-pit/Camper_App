@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.camper_app_server.security.payload.UtenteDTO;
 import com.camper_app_server.service.UserService;
 
+import jakarta.websocket.server.PathParam;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/app/users")
@@ -25,6 +27,11 @@ public class UserController {
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> getAll(){
 		return ResponseEntity.ok(userService.getAll());
+	}
+	@GetMapping("/search")
+	@PreAuthorize("hasRole('USER')")
+	public ResponseEntity<?> getByUserName(@PathParam(value="userName") String userName){
+		return ResponseEntity.ok(userService.getByUsername(userName));
 	}
 	
 	@GetMapping("/{user_id}")

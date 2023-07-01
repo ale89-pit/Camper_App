@@ -1,5 +1,8 @@
 package com.camper_app_server.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,15 +20,21 @@ public class UserService {
 
 	@Autowired UtenteDAO userDAO;
 	
-	public ResponseEntity<?> getAll(){
-		return ResponseEntity.ok(userDAO.findAll());
+	public List<User> getAll(){
+		return userDAO.findAll();
 	}
 	
-	public ResponseEntity<?> getById(Long userId){
+	public User getById(Long userId){
 		if(!userDAO.existsById(userId)) {
 			throw new MyAPIException(HttpStatus.NOT_FOUND ,"nessun utente trovato");
 		}
-		return ResponseEntity.ok(userDAO.findById(userId).get());
+		return userDAO.findById(userId).get();
+	}
+	public Optional<User> getByUsername(String userName) {
+		if(!userDAO.existsByUserName(userName)) {
+			throw new MyAPIException(HttpStatus.NOT_FOUND ,"nessun utente trovato");
+		}
+		return userDAO.findByUserName(userName);
 	}
 	
 	public ResponseEntity<?> updateUser(Long userid,UtenteDTO u){

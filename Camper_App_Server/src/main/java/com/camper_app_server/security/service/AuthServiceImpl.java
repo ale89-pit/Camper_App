@@ -23,9 +23,11 @@ import com.camper_app_server.security.security.JwtTokenProvider;
 
 
 
+
 @Service
 public class AuthServiceImpl implements AuthService {
-
+	
+	
     private AuthenticationManager authenticationManager;
     private UtenteDAO userRepository;
     private RoleDAO roleRepository;
@@ -46,7 +48,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public String login(LoginDto loginDto) {
-
+    	
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginDto.getUserName(), loginDto.getPassword()));
