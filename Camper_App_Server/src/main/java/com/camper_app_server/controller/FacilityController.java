@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.camper_app_server.security.payload.FacilityDTO;
 import com.camper_app_server.service.FacilityService;
 
+import jakarta.websocket.server.PathParam;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/app/facilities")
@@ -37,6 +39,12 @@ public class FacilityController {
 		return ResponseEntity.ok(facilityService.getById(facility_id));
 	}
 	
+	@GetMapping("/search")
+	@PreAuthorize("hasRole('USER')")
+//	http://localhost:8080/app/facilities/search?desc=camping&tit=camping
+	public ResponseEntity<?> searchFacility(@PathParam (value = "desc") String desc,@PathParam (value = "tit") String tit){
+		return ResponseEntity.ok(facilityService.searchFacility(desc, tit));
+	}
 	@PostMapping
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> insertFacility(@RequestBody FacilityDTO f){

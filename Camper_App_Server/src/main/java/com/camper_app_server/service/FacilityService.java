@@ -1,6 +1,7 @@
 package com.camper_app_server.service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.camper_app_server.repositories.FacilityRepository;
 import com.camper_app_server.repositories.FacilityServiceRepository;
-import com.camper_app_server.security.entity.Comment;
+
 import com.camper_app_server.security.entity.Facility;
 import com.camper_app_server.security.entity.FacilityServicesEntity;
 import com.camper_app_server.security.exception.MyAPIException;
@@ -27,18 +28,18 @@ public class FacilityService {
 	@Autowired
 	FacilityRepository facilityRepository;
 
-	public ResponseEntity<?> getAll() {
-		return ResponseEntity.ok(facilityRepository.findAll());
+	public List<Facility> getAll() {
+		return facilityRepository.findAll();
 	}
 
-	public ResponseEntity<?> getById(Long facilityId) {
+	public Facility getById(Long facilityId) {
 		if (!facilityRepository.existsById(facilityId)) {
 			throw new MyAPIException(HttpStatus.NOT_FOUND, "nessuna struttura trovata");
 		}
-		return ResponseEntity.ok(facilityRepository.findById(facilityId).get());
+		return (facilityRepository.findById(facilityId).get());
 	}
 
-	public ResponseEntity<String> insertFacility(FacilityDTO f) {
+	public Facility insertFacility(FacilityDTO f) {
 		Facility insert = new Facility();
 		Set<FacilityServicesEntity> service = new HashSet<>();
 
@@ -55,11 +56,11 @@ public class FacilityService {
 		});
 		insert.setServiceFacility(service);
 
-		facilityRepository.save(insert);
-		return ResponseEntity.ok("Struttura aggiunta correttamente");
+		return facilityRepository.save(insert);
+		
 	}
 
-	public ResponseEntity<String> updateFacility(Long id, FacilityDTO f) {
+	public Facility updateFacility(Long id, FacilityDTO f) {
 		if (!facilityRepository.existsById(id)) {
 			throw new MyAPIException(HttpStatus.NOT_FOUND, "nessuna struttura trovata");
 		}
@@ -95,7 +96,7 @@ public class FacilityService {
 		facilityRepository.save(old);
 //				
 
-		return ResponseEntity.ok("Struttura aggiornata");
+		return old;
 	}
 
 	public ResponseEntity<String> deleteFacility(Long facilityId) {
@@ -107,11 +108,18 @@ public class FacilityService {
 		facilityRepository.delete(f);
 		return ResponseEntity.ok("Struttura eliminata");
 	}
-
-	public ResponseEntity<?> addComment(Long facilityId, Comment c) {
-		Facility f = facilityRepository.findById(facilityId).get();
-//		f.getComment().add(c);
-		facilityRepository.save(f);
-		return ResponseEntity.ok("commento aggiunto");
+	
+	public List<Facility> searchFacility(String desc,String title){
+		
+		List<Facility> querySearch = facilityRepository.findByDescriptionContainingOrNameContaining(desc, title);
+		
+		if(querySearch.isEmpty()) {
+			 throw new MyAPIException(HttpStatus.NOT_FOUND, "nessuna struttura trovata");
+		}else {
+			return querySearch;
+		}
+		
 	}
+
+
 }

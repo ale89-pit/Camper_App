@@ -65,11 +65,23 @@ public class CommentService {
 //		facilityService.addComment(commentdto.getFacility_id(), save);
 		return ResponseEntity.ok("commento aggiunto");
 	}
+	
+	
 	public List<Comment> getCommentByFacility(Facility f){
 		
 		return commentRepository.findByFacility(f);
 		
 	
 	
+	}
+	
+	
+	public String deleteComment(Long id) {
+		if (!commentRepository.existsById(id)) {
+			throw new MyAPIException(HttpStatus.NOT_FOUND, "nessun commento trovato");
+		}
+		commentRepository.deleteById(id);
+		
+		return "commento eliminato";
 	}
 }
