@@ -18,7 +18,7 @@ import com.camper_app_server.service.FacilityService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/app/facilities")
+@RequestMapping("/app")
 public class FacilityController {
 
 
@@ -26,29 +26,29 @@ public class FacilityController {
 	
 	
 	@GetMapping
-	@PreAuthorize("hasRole('USER')")
+	
 	public ResponseEntity<?> getAll(){
 		return ResponseEntity.ok(facilityService.getAll());
 	}
 	
 	@GetMapping("/{facility_id}")
-	@PreAuthorize("hasRole('USER')")
+	
 	public ResponseEntity<?> getById(@PathVariable Long facility_id){
 		return ResponseEntity.ok(facilityService.getById(facility_id));
 	}
 	
-	@PostMapping
+	@PostMapping("/facilities")
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> insertFacility(@RequestBody FacilityDTO f){
 		return ResponseEntity.ok(facilityService.insertFacility(f));
 		
 	}
-	@PutMapping("/{facility_id}")
+	@PutMapping("/facilities/{facility_id}")
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> updateFacility(@PathVariable Long facility_id,@RequestBody FacilityDTO f){
 		return ResponseEntity.ok(facilityService.updateFacility(facility_id, f));
 	}
-	@DeleteMapping("/{facility_id}")
+	@DeleteMapping("/facilities/{facility_id}")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<String> deleteFacility(@PathVariable Long facility_id){
 		facilityService.deleteFacility(facility_id);

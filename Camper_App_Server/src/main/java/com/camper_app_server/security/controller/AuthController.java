@@ -2,6 +2,8 @@ package com.camper_app_server.security.controller;
 
 import java.util.List;
 
+import javax.naming.AuthenticationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.camper_app_server.security.entity.User;
+import com.camper_app_server.security.exception.MyAPIException;
 import com.camper_app_server.security.payload.JWTAuthResponse;
 import com.camper_app_server.security.payload.LoginDto;
 import com.camper_app_server.security.payload.RegisterDto;
@@ -37,7 +40,10 @@ public class AuthController {
     // Build Login REST API
     @PostMapping(value = { "/login", "/signin" })
     public ResponseEntity<JWTAuthResponse> login(@RequestBody LoginDto loginDto) {
-
+    	if (!utenteDAO.existsByUserName(loginDto.getUserName())) {
+	        throw new MyAPIException(HttpStatus.NOT_FOUND,"Username non valido");
+	    }
+    	
         String token = authService.login(loginDto);
 
         JWTAuthResponse jwtAuthResponse = new JWTAuthResponse();

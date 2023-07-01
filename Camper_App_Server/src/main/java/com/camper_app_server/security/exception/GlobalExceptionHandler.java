@@ -18,6 +18,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.naming.AuthenticationException;
+
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -36,6 +38,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), exception.getMessage(),
                 webRequest.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+    }
+    public ResponseEntity<ErrorDetails> handleAuthenticationException(AuthenticationException exception,
+            WebRequest webRequest) {
+        ErrorDetails errorDetails = new ErrorDetails(new Date(), "Credenziali non valide",
+                webRequest.getDescription(false));
+        return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
     }
 
     // global exceptions
