@@ -39,17 +39,16 @@ public class FacilityController {
 		return ResponseEntity.ok(facilityService.getById(facility_id));
 	}
 	
-<<<<<<< HEAD
+
 	@GetMapping("/search")
 	@PreAuthorize("hasRole('USER')")
 //	http://localhost:8080/app/facilities/search?desc=camping&tit=camping
 	public ResponseEntity<?> searchFacility(@PathParam (value = "desc") String desc,@PathParam (value = "tit") String tit){
 		return ResponseEntity.ok(facilityService.searchFacility(desc, tit));
 	}
-	@PostMapping
-=======
+
 	@PostMapping("/facilities")
->>>>>>> 9f5a6d6674080130015ba82d2ed35a77e6cb0cf7
+
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> insertFacility(@RequestBody FacilityDTO f){
 		return ResponseEntity.ok(facilityService.insertFacility(f));
