@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.camper_app_server.enumerated.FacilityType;
 import com.camper_app_server.repositories.FacilityRepository;
 import com.camper_app_server.repositories.FacilityServiceRepository;
 
@@ -42,12 +43,12 @@ public class FacilityService {
 	public Facility insertFacility(FacilityDTO f) {
 		Facility insert = new Facility();
 		Set<FacilityServicesEntity> service = new HashSet<>();
-
+		insert.setCover(f.getCover());
 		insert.setName(f.getName());
 		insert.setDescription(f.getDescription());
 		insert.setPhoneNumber(f.getPhoneNumber());
-		insert.setFacilityType(f.getType());
-		insert.setOfficialSite(f.getWebSite());
+		insert.setFacilityType(f.getFacilityType().equals("CAMPING")? FacilityType.CAMPING: f.getFacilityType().equals("PARKING_AREA")? FacilityType.PARKING_AREA:FacilityType.FREE_PARKING_AREA);
+		insert.setOfficialSite(f.getOfficialSite());
 
 //		Qui inserisco solo l'id del servizio assiociato alla tabella service per implementarlo al set di servizi di ogni struttura
 		f.getService().forEach(a -> {
@@ -66,12 +67,12 @@ public class FacilityService {
 		}
 
 		Facility old = facilityRepository.findById(id).get();
-
+		old.setCover(f.getCover());
 		old.setName(f.getName());
 		old.setDescription(f.getDescription());
 		old.setPhoneNumber(f.getPhoneNumber());
-		old.setOfficialSite(f.getWebSite());
-		old.setFacilityType(f.getType());
+		old.setOfficialSite(f.getOfficialSite());
+		old.setFacilityType(f.getFacilityType().equals("CAMPING")? FacilityType.CAMPING: f.getFacilityType().equals("PARKING_AREA")? FacilityType.PARKING_AREA:FacilityType.FREE_PARKING_AREA);
 		// Confronto la lista di servizi salvata con quella che gli passa l'utente
 		// se ha gli stessi id rimane invariata, mentre se ce ne sono di meno vengono
 		// eliminati e se ce ne sono di piu aggiunti.
@@ -84,17 +85,21 @@ public class FacilityService {
 			actualService.add(s);
 		});
 		System.out.println(actualService);
+		
+			
+		
 //			if(!f.getService().containsAll(actual)){
 //		 Controllo quale lista ha più elementi e a seconda di quale sia più grande aumento o diminuisco i servizi
 		if (actualService.size() > oldService.size()) {
 			oldService.addAll(actualService);
 			old.setServiceFacility(oldService);
 			facilityRepository.save(old);
-		} else if (actualService.size() < oldService.size())
+		} else if (actualService.size() < oldService.size()) {
 			oldService.retainAll(actualService);
 		old.setServiceFacility(oldService);
 		facilityRepository.save(old);
-//				
+		}
+		
 
 		return old;
 	}

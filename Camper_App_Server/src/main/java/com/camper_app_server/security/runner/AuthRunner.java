@@ -81,6 +81,10 @@ public class AuthRunner implements ApplicationRunner {
 	}
 	
 	public void setServiceFacility() {
+		FacilityServicesEntity loadWater = new FacilityServicesEntity();
+		loadWater.setService(EServiceFacility.WATER_LOADING);
+		facilitiServiceRepository.save(loadWater);
+		
 		FacilityServicesEntity elec = new FacilityServicesEntity();
 		elec.setService(EServiceFacility.ELECTRICITY);
 		facilitiServiceRepository.save(elec);
@@ -116,7 +120,8 @@ public class AuthRunner implements ApplicationRunner {
 		FacilityServicesEntity market = new FacilityServicesEntity();
 		market.setService(EServiceFacility.MARKET);
 		facilitiServiceRepository.save(market);
-
+		
+		
 	}
 
 }

@@ -51,6 +51,7 @@ public class User {
 	@Column(unique = true, nullable = false)
 	private String email;
 	@Column(nullable = false)
+	@JsonIgnore
 	private String password;
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))

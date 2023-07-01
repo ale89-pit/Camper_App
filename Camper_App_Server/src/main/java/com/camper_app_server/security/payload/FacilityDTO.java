@@ -18,12 +18,13 @@ import lombok.ToString;
 @AllArgsConstructor
 public class FacilityDTO {
 	
+	private String cover;
 	private String name;
 	private String description;
 	private String phoneNumber;
-	private String webSite;
+	private String officialSite;
 	private Set<Long> service;
-	private FacilityType type;
+	private String facilityType;
 	
 
 }

@@ -15,6 +15,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -55,7 +56,7 @@ public class Facility {
 	@Enumerated(EnumType.STRING)
 	private FacilityType facilityType;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Set<FacilityServicesEntity> serviceFacility;
 //	
 //	@OneToMany(fetch = FetchType.EAGER,targetEntity = Comment.class)
