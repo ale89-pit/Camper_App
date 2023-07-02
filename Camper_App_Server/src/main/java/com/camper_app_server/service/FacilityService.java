@@ -11,9 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.camper_app_server.enumerated.FacilityType;
+import com.camper_app_server.repositories.AddressRepository;
+import com.camper_app_server.repositories.ComuniRepository;
 import com.camper_app_server.repositories.FacilityRepository;
 import com.camper_app_server.repositories.FacilityServiceRepository;
-
+import com.camper_app_server.security.entity.Address;
+import com.camper_app_server.security.entity.Comune;
 import com.camper_app_server.security.entity.Facility;
 import com.camper_app_server.security.entity.FacilityServicesEntity;
 import com.camper_app_server.security.exception.MyAPIException;
@@ -28,6 +31,12 @@ public class FacilityService {
 	// repository per il CRUD delle strutture
 	@Autowired
 	FacilityRepository facilityRepository;
+	
+	@Autowired 
+	ComuniRepository comuniDAO;
+	
+	@Autowired
+	AddressService  addressService;
 
 	public List<Facility> getAll() {
 		return facilityRepository.findAll();
@@ -49,14 +58,29 @@ public class FacilityService {
 		insert.setPhoneNumber(f.getPhoneNumber());
 		insert.setFacilityType(f.getFacilityType().equals("CAMPING")? FacilityType.CAMPING: f.getFacilityType().equals("PARKING_AREA")? FacilityType.PARKING_AREA:FacilityType.FREE_PARKING_AREA);
 		insert.setOfficialSite(f.getOfficialSite());
-
+		
+		
+		//inserimento dell'indirizzo tramite addressDTO
+		
+		Address addr = new Address();
+		addr.setStreet(f.getAddress().getStreet());
+		addr.setStreetNumber(f.getAddress().getStreetNumber());
+		if(comuniDAO.existsById(f.getAddress().getComune())){
+		 Comune  c= comuniDAO.findById(f.getAddress().getComune()).get();
+		 addr.setComune(c);
+		}
+		Address save = addressService.saveAddress(addr);
+		insert.setAddress(save);
+		
 //		Qui inserisco solo l'id del servizio assiociato alla tabella service per implementarlo al set di servizi di ogni struttura
-		f.getService().forEach(a -> {
-			FacilityServicesEntity s = facilityServiceRepository.findById(a).get();
+		
+		
+		f.getService().forEach(ser -> {
+			FacilityServicesEntity s = facilityServiceRepository.findById(ser).get();
 			service.add(s);
 		});
 		insert.setServiceFacility(service);
-
+		System.out.println(insert);
 		return facilityRepository.save(insert);
 		
 	}
@@ -100,7 +124,15 @@ public class FacilityService {
 		facilityRepository.save(old);
 		}
 		
-
+		Address addr = addressService.getAddress(old.getAddress().getAddress_id()); 
+		addr.setStreet(f.getAddress().getStreet());
+		addr.setStreetNumber(f.getAddress().getStreetNumber());
+		if(comuniDAO.existsById(f.getAddress().getComune())){
+		 Comune  c= comuniDAO.findById(f.getAddress().getComune()).get();
+		 addr.setComune(c);
+		}
+		Address save = addressService.updateAddress(addr.getAddress_id(),addr);
+		old.setAddress(save);
 		return old;
 	}
 

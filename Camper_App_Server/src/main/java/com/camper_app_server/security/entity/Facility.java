@@ -15,8 +15,13 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.SecondaryTable;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,6 +35,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name="facilities")
+
 @NoArgsConstructor
 @AllArgsConstructor
 public class Facility {
@@ -51,8 +57,12 @@ public class Facility {
 	@Column(name="url")
 	private String cover;
 	
+	@OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	private Address address;
+	
 	@Column(name ="website")
 	private String officialSite;
+	
 	@Enumerated(EnumType.STRING)
 	private FacilityType facilityType;
 	

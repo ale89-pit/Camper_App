@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.camper_app_server.security.payload.FacilityDTO;
 import com.camper_app_server.service.FacilityService;
+import com.camper_app_server.service.FacilityServiceEntityService;
 
 import jakarta.websocket.server.PathParam;
 
@@ -25,12 +26,19 @@ public class FacilityController {
 
 
 	@Autowired FacilityService facilityService;
-	
+	@Autowired FacilityServiceEntityService facSerEntSer;
 	
 	@GetMapping
 	
 	public ResponseEntity<?> getAll(){
 		return ResponseEntity.ok(facilityService.getAll());
+	}
+	
+	//questa rotta serve per il front-end per mostrare i servizi disponibili e quindi assegnarli alla strutture che si crea
+	@GetMapping("/service")
+	@PreAuthorize("hasRole('USER')")
+	public ResponseEntity<?> gettAllService(){
+		return ResponseEntity.ok(facSerEntSer.getAll());
 	}
 	
 	@GetMapping("/{facility_id}")

@@ -25,6 +25,7 @@ public class FacilityDTO {
 	private String officialSite;
 	private Set<Long> service;
 	private String facilityType;
+	private AddressDTO address;
 	
 
 }
