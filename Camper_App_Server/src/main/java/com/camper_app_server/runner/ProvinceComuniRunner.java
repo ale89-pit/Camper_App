@@ -27,6 +27,7 @@ public class ProvinceComuniRunner implements ApplicationRunner{
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		// TODO Auto-generated method stub
+		
 		if(provinceDAO.findAll().isEmpty()) {
 		 List<List<String>> recordsProvince = new ArrayList<>();
 	     BufferedReader brProvince = new BufferedReader(

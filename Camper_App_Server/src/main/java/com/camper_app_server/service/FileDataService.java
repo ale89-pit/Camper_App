@@ -1,46 +1,111 @@
 package com.camper_app_server.service;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
-import java.util.Base64;
-import java.util.Optional;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.stream.Stream;
+
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.camper_app_server.repositories.FileDataReposrtitory;
-import com.camper_app_server.security.entity.FileData;
+import com.camper_app_server.repositories.FileDataLocal;
 
-import io.jsonwebtoken.io.IOException;
 
 @Service
-public class FileDataService {
+public class FileDataService implements FileDataLocal {
 
 	
-	@Autowired private FileDataReposrtitory fileDataRepository;
-	private final String FOLDER_PATH = "C:/Users/Aless/Desktop/Camper_App/Camper_App_Server/src/main/resources/imageFacility/";
 	
-	public String uploadImageFromFileSystem(MultipartFile file) throws IOException, IllegalStateException, java.io.IOException{
-		String filePath = FOLDER_PATH + file.getOriginalFilename();
-		
-		FileData fileData = fileDataRepository.save(FileData.builder()
-							.nome(file.getOriginalFilename())
-							.type(file.getContentType())
-							.filePath(filePath).build());
-		file.transferTo(new File(filePath));
-			if(fileData != null) {
-				return filePath;
+	private final Path FOLDER_PATH = Paths.get("src","main","resources","imageFacility");
+	
+	@Override
+	public void init()  {
+		   
+			      try {
+					Files.createDirectories(FOLDER_PATH);
+				} catch (java.io.IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					throw new RuntimeException("Could not initialize folder for upload!");
+				}
+			   
+			    	
+			    
+			  
+	}
+	@Override
+	public void save(MultipartFile file) {
+		System.out.println(FOLDER_PATH);
+	    try {
+	      Files.copy(file.getInputStream(), this.FOLDER_PATH.resolve(file.getOriginalFilename()));
+	    } catch (Exception e) {
+	      if (e instanceof FileAlreadyExistsException) {
+	        throw new RuntimeException("A file of that name already exists.");
+	      }
+
+	      throw new RuntimeException(e.getMessage());
+	    }
+	  }
+	@Override
+	 public Resource load(String filename) {
+		    try {
+		      Path file = FOLDER_PATH.resolve(filename);
+		      Resource resource = new UrlResource(file.toUri());
+
+		      if (resource.exists() || resource.isReadable()) {
+		        return resource;
+		      } else {
+		        throw new RuntimeException("Could not read the file!");
+		      }
+		    } catch (MalformedURLException e) {
+		      throw new RuntimeException("Error: " + e.getMessage());
+		    }
+		  }
+	  public void deleteAll() {
+		    FileSystemUtils.deleteRecursively(FOLDER_PATH.toFile());
+		  }
+	  
+	  
+	  @Override
+	  public Stream<Path> loadAll()  {
+		   
+		      try {
+				return Files.walk(this.FOLDER_PATH, 1).filter(path -> !path.equals(this.FOLDER_PATH)).map(this.FOLDER_PATH::relativize);
+			} catch (java.io.IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				throw new RuntimeException("Could not load the files!");
 			}
-		return null;
-	}
+		  
+		   
+		  }
+//	public String uploadImageFromFileSystem(MultipartFile file) throws IOException, IllegalStateException, java.io.IOException{
+//		String filePath = FOLDER_PATH + file.getOriginalFilename();
+//		
+//		FileData fileData = fileDataRepository.save(FileData.builder()
+//							.nome(file.getOriginalFilename())
+//							.type(file.getContentType())
+//							.filePath(filePath).build());
+//		file.transferTo(new File(filePath));
+//			if(fileData != null) {
+//				return filePath;
+//			}
+//		return null;
+//	}
 	
-	public String downloadImageFromFileSystem(String fileName) throws java.io.IOException {
-		Optional<FileData>  fileData = fileDataRepository.findByNome(fileName);
-		 String filePath = fileData.get().getFilePath();
-		 
-		byte [] image = Files.readAllBytes(new File(filePath).toPath());
-		String encodeImage = Base64.getEncoder().encodeToString(image);
-		return encodeImage;
-	}
+//	public byte[] downloadImageFromFileSystem(String fileName) throws java.io.IOException {
+//		Optional<FileData>  fileData = fileDataRepository.findByNome(fileName);
+//		 String filePath = fileData.get().getFilePath();
+//		 
+//		byte [] image = Files.readAllBytes(new File(filePath).toPath());
+////		String encodeImage = Base64.getEncoder().encodeToString(image);
+//		return image;
+//	}
 }

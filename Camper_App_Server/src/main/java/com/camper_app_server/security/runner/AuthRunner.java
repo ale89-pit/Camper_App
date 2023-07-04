@@ -17,6 +17,7 @@ import com.camper_app_server.security.entity.Role;
 import com.camper_app_server.security.repository.RoleDAO;
 import com.camper_app_server.security.repository.UtenteDAO;
 import com.camper_app_server.security.service.AuthService;
+import com.camper_app_server.service.FileDataService;
 
 
 
@@ -33,6 +34,8 @@ public class AuthRunner implements ApplicationRunner {
 	AuthService authService;
 	@Autowired
 	FacilityServiceRepository facilitiServiceRepository;
+	@Autowired 
+	FileDataService filaDataService;
 
 	private Set<Role> adminRole;
 	private Set<Role> moderatorRole;
@@ -46,7 +49,7 @@ public class AuthRunner implements ApplicationRunner {
 //		Riempio le tabelle role e facilityService con Enum gia predisposti
 //		per facilitare l'inserimento nella parte frontEnd
 		
-		
+//		filaDataService.init();
 		if(roleRepository.findAll().isEmpty()) {
 			setRoleDefault();
 		}

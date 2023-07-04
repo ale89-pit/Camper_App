@@ -54,6 +54,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/app/**").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/facilities/image/**").permitAll()
                         .requestMatchers("/app/facilities/**").hasRole("USER")
                         .anyRequest().authenticated())
                 .exceptionHandling(exception -> exception

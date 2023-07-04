@@ -20,12 +20,19 @@ import lombok.NoArgsConstructor;
 @Builder
 public class FileData {
 
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String nome;
-	private String type;
 
 	private String filePath;
+	
+	
+	public FileData(String filename, String url) {
+		 this.nome = filename;
+		    this.filePath = url;
+	}
 }
