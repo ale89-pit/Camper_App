@@ -91,12 +91,33 @@ public class FacilityService {
 		}
 
 		Facility old = facilityRepository.findById(id).get();
-		old.setCover(f.getCover());
-		old.setName(f.getName());
-		old.setDescription(f.getDescription());
-		old.setPhoneNumber(f.getPhoneNumber());
-		old.setOfficialSite(f.getOfficialSite());
-		old.setFacilityType(f.getFacilityType().equals("CAMPING")? FacilityType.CAMPING: f.getFacilityType().equals("PARKING_AREA")? FacilityType.PARKING_AREA:FacilityType.FREE_PARKING_AREA);
+		if(f.getCover()!= null) {
+			old.setCover(f.getCover());
+		}
+		old.setCover(old.getCover());
+		
+		if(f.getName()!= null) {
+			
+			old.setName(f.getName());
+		}
+		old.setName(old.getName());
+		if(f.getDescription()!= null) {
+			old.setDescription(f.getDescription());
+		}
+		if(f.getPhoneNumber()!= null) {
+			old.setPhoneNumber(f.getPhoneNumber());
+		}
+		old.setPhoneNumber(old.getPhoneNumber());
+		if(f.getOfficialSite()!= null) {
+			old.setOfficialSite(f.getOfficialSite());
+			
+		}
+		old.setOfficialSite(old.getOfficialSite());
+		if(f.getFacilityType()!= null) {
+			old.setFacilityType(f.getFacilityType().equals("CAMPING")? FacilityType.CAMPING: f.getFacilityType().equals("PARKING_AREA")? FacilityType.PARKING_AREA:FacilityType.FREE_PARKING_AREA);
+			
+		}
+		old.setFacilityType(old.getFacilityType());
 		// Confronto la lista di servizi salvata con quella che gli passa l'utente
 		// se ha gli stessi id rimane invariata, mentre se ce ne sono di meno vengono
 		// eliminati e se ce ne sono di piu aggiunti.
@@ -112,27 +133,42 @@ public class FacilityService {
 		
 			
 		
+		Address addr = addressService.getAddress(old.getAddress().getAddress_id()); 
+		if(f.getAddress()!=null) {
+			addr.setStreet(f.getAddress().getStreet());
+			
+		}
+		addr.setStreet(old.getAddress().getStreet());
+		
+		if(f.getAddress().getStreet()!= null) {
+			addr.setStreetNumber(f.getAddress().getStreetNumber());
+			
+		}
+		addr.setStreetNumber(old.getAddress().getStreetNumber());
+		if(f.getAddress().getComune()!=null) {
+			
+			if(comuniDAO.existsById(f.getAddress().getComune())){
+				Comune  c= comuniDAO.findById(f.getAddress().getComune()).get();
+				addr.setComune(c);
+			}
+		}
+		addr.setComune(old.getAddress().getComune());
+		
+		Address save = addressService.updateAddress(addr.getAddress_id(),addr);
+		old.setAddress(save);
+		
 //			if(!f.getService().containsAll(actual)){
-//		 Controllo quale lista ha più elementi e a seconda di quale sia più grande aumento o diminuisco i servizi
+//		 Controllo quale lista ha più elementi e a seconda di quale sia più grande aumento o diminuisco i servizi confrontandoli
 		if (actualService.size() > oldService.size()) {
 			oldService.addAll(actualService);
 			old.setServiceFacility(oldService);
 			facilityRepository.save(old);
 		} else if (actualService.size() < oldService.size()) {
 			oldService.retainAll(actualService);
-		old.setServiceFacility(oldService);
+			old.setServiceFacility(oldService);
 		facilityRepository.save(old);
 		}
 		
-		Address addr = addressService.getAddress(old.getAddress().getAddress_id()); 
-		addr.setStreet(f.getAddress().getStreet());
-		addr.setStreetNumber(f.getAddress().getStreetNumber());
-		if(comuniDAO.existsById(f.getAddress().getComune())){
-		 Comune  c= comuniDAO.findById(f.getAddress().getComune()).get();
-		 addr.setComune(c);
-		}
-		Address save = addressService.updateAddress(addr.getAddress_id(),addr);
-		old.setAddress(save);
 		return old;
 	}
 

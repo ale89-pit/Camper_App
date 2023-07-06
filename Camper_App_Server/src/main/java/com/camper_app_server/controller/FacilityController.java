@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
@@ -56,7 +55,7 @@ public class FacilityController {
 	//questa rotta serve per il front-end per mostrare i servizi disponibili e quindi assegnarli alla strutture che si crea
 	@GetMapping("/service")
 	@PreAuthorize("hasRole('USER')")
-	public ResponseEntity<?> gettAllService(){
+	public ResponseEntity<?> getAllService(){
 		return ResponseEntity.ok(facSerEntSer.getAll());
 	}
 	
@@ -109,7 +108,7 @@ public class FacilityController {
 	      fileDataRepository.save(f);
 	      
 	      message = "Uploaded the file successfully: " + file.getOriginalFilename();
-	      return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+	      return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message + f+file.getOriginalFilename()));
 	    } catch (Exception e) {
 	      message = "Could not upload the file: " + file.getOriginalFilename() + ". Error: " + e.getMessage();
 	      
@@ -128,7 +127,7 @@ public class FacilityController {
 
 		      return new FileData(filename, url);
 		    }).collect(Collectors.toList());
-
+		    
 		    return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
 		  }
 		
@@ -137,8 +136,9 @@ public class FacilityController {
 		//per impostare la cover alla struttura che si sta creando
 		  @GetMapping("/facilities/image/{filename:.+}")
 		  @ResponseBody
-		  public ResponseEntity<FileData> getFile(@PathVariable String filename) {
-		  return ResponseEntity.ok(fileDataRepository.findByNome(filename)) ;
+		  public ResponseEntity<Resource> getFile(@PathVariable String filename) {
+			  Resource fileTrovato =  fileDataService.load(filename);
+		  return ResponseEntity.ok(fileDataService.load(filename)) ;
 		  }
 		
 //fine sezione foto
