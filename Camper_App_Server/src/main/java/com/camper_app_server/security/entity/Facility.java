@@ -51,7 +51,7 @@ public class Facility {
 	@Column(nullable = false,columnDefinition = "TEXT")
 	private String description;
 	
-	@Column(unique = true, nullable = false)
+	@Column(unique = true)
 	private String phoneNumber;
 	
 	@Column(name="url")
