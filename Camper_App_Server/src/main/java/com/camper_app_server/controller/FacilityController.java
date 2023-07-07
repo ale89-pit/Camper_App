@@ -67,14 +67,13 @@ public class FacilityController {
 	
 
 	@GetMapping("/search")
-	@PreAuthorize("hasRole('USER')")
+	
 //	http://localhost:8080/app/facilities/search?desc=camping&tit=camping
 	public ResponseEntity<?> searchFacility(@PathParam (value = "desc") String desc,@PathParam (value = "tit") String tit){
 		return ResponseEntity.ok(facilityService.searchFacility(desc, tit));
 	}
 
 	@PostMapping("/facilities")
-
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> insertFacility(@RequestBody FacilityDTO f){
 		return ResponseEntity.ok(facilityService.insertFacility(f));

@@ -54,6 +54,7 @@ public class FacilityService {
 		Set<FacilityServicesEntity> service = new HashSet<>();
 		insert.setCover(f.getCover());
 		insert.setName(f.getName());
+		insert.setEmail(f.getEmail());
 		insert.setDescription(f.getDescription());
 		insert.setPhoneNumber(f.getPhoneNumber());
 		insert.setFacilityType(f.getFacilityType().equals("CAMPING")? FacilityType.CAMPING: f.getFacilityType().equals("PARKING_AREA")? FacilityType.PARKING_AREA:FacilityType.FREE_PARKING_AREA);
@@ -117,6 +118,12 @@ public class FacilityService {
 			old.setFacilityType(f.getFacilityType().equals("CAMPING")? FacilityType.CAMPING: f.getFacilityType().equals("PARKING_AREA")? FacilityType.PARKING_AREA:FacilityType.FREE_PARKING_AREA);
 			
 		}
+		if(f.getEmail()!= null) {
+			old.setEmail(f.getEmail());
+		}
+		
+		old.setEmail(old.getEmail());
+		
 		old.setFacilityType(old.getFacilityType());
 		// Confronto la lista di servizi salvata con quella che gli passa l'utente
 		// se ha gli stessi id rimane invariata, mentre se ce ne sono di meno vengono
