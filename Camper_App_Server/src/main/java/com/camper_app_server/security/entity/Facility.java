@@ -63,6 +63,9 @@ public class Facility {
 	@Column(name ="website")
 	private String officialSite;
 	
+	@Column(name="email")
+	private String email;
+	
 	@Enumerated(EnumType.STRING)
 	private FacilityType facilityType;
 	

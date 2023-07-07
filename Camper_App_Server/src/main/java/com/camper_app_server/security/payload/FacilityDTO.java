@@ -23,6 +23,7 @@ public class FacilityDTO {
 	private String description;
 	private String phoneNumber;
 	private String officialSite;
+	private String email;
 	private Set<Long> service;
 	private String facilityType;
 	private AddressDTO address;
