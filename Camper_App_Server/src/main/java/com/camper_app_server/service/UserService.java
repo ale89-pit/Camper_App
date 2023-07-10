@@ -36,6 +36,13 @@ public class UserService {
 		}
 		return userDAO.findByUserName(userName);
 	}
+	//metodo da vedere bene perchè devo aggiornare l'utente
+	public String addImageProfile(Long userId,String urlPhotoUser) {
+		User u = userDAO.findById(userId).get();
+		u.setPhotoProfile(urlPhotoUser);
+		userDAO.save(u);
+		return "foto aggiunta";
+	}
 	
 	public ResponseEntity<?> updateUser(Long userid,UtenteDTO u){
 		if(!userDAO.existsById(userid)) {
@@ -43,11 +50,25 @@ public class UserService {
 		}
 		User user = userDAO.findById(userid).get();
 		System.out.println(user);
-		System.err.println(u.getCognome());
-		user.setCognome(u.getCognome());
+		if(u.getCognome()!= null) {
+			user.setCognome(u.getCognome());
+		}
+		if(u.getPhotoProfile() != null) {
+			user.setPhotoProfile(u.getPhotoProfile());
+			
+		}
+		if(u.getEmail() != null) {
 		user.setEmail(u.getEmail());
-		user.setNome(u.getNome());
-		user.setUserName(u.getUserName());
+		
+		}
+		if(u.getNome() != null) {
+			user.setNome(u.getNome());
+			
+		}
+		if(u.getUserName() != null) {
+			
+			user.setUserName(u.getUserName());
+		}
 		return ResponseEntity.ok(userDAO.save(user));
 	}
 	

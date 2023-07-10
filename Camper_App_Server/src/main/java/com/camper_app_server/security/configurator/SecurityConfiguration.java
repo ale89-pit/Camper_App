@@ -56,6 +56,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/app/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/facilities/image/**").permitAll()
                         .requestMatchers("/app/facilities/**").hasRole("USER")
+                        .requestMatchers("/app/users/**").hasRole("USER")
                         .anyRequest().authenticated())
                 .exceptionHandling(exception -> exception
                         .authenticationEntryPoint(authenticationEntryPoint))

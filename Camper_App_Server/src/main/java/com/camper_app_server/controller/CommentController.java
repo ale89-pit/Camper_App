@@ -47,7 +47,7 @@ public class CommentController {
 	
 	@GetMapping("/allBy" )
 //	http://localhost:8080/app/comments/allBy?facility_id=1
-	@PreAuthorize("hasRole('USER')")
+//	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> commetByFacility(@PathParam(value = "facility_id") Long facility_id){
 	 Facility f = facilityService.getById(facility_id);
 	

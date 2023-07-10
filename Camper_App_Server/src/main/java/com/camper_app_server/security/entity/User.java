@@ -42,6 +42,8 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@Column
+	private String photoProfile;
 	@Column(nullable = false)
 	private String userName;
 	@Column(nullable = false)
