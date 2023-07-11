@@ -61,20 +61,6 @@ public class User {
 	
 	@OneToMany
 	private List<Facility> preference;
-	// @ManyToMany(targetEntity = Prenotazione.class, fetch = FetchType.EAGER)
-	// @JoinTable(name = "prenotazioni_lista_utenti", joinColumns = @JoinColumn(name
-	// = "utente_id "), inverseJoinColumns = @JoinColumn(name = "prenotazione_id"))
-	// @JsonIgnore
-	// private List<?> listaPrenotazioni = new ArrayList(null)<?>();
-
-	// public Utente(String userName, String nome, String cognome, String email) {
-	// super();
-	// this.userName = userName;
-	// this.nome = nome;
-	// this.pass
-	// this.cognome = cognome;
-	// this.email = email;
-	//
-	// }
+	
 
 }

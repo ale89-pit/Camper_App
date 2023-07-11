@@ -1,9 +1,8 @@
-00:02:19.472 [http-nio-8080-exec-6] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'image' is not present.]
-00:03:16.027 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'image' is not present.]
-00:04:56.838 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
-00:04:56.847 [Thread-74] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
-00:04:56.847 [Thread-74] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] - Destroying Spring FrameworkServlet 'dispatcherServlet'
-00:04:56.849 [Thread-74] WARN  o.a.c.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [HikariPool-19 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+00:02:54.920 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m17s702ms487µs400ns).
+00:04:24.199 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 2 class path changes (0 additions, 0 deletions, 2 modifications)
+00:04:24.231 [Thread-5] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+00:04:24.234 [Thread-5] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Destroying Spring FrameworkServlet 'dispatcherServlet'
+00:04:24.242 [Thread-5] WARN  o.a.c.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.6/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.6/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.6/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
@@ -13,48 +12,36 @@
  java.base@17.0.6/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.6/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.6/java.lang.Thread.run(Thread.java:833)
-00:04:56.850 [Thread-74] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-00:04:56.851 [Thread-74] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-19 - Shutdown initiated...
-00:04:56.852 [Thread-74] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-19 - Shutdown completed.
-00:04:56.921 [restartedMain] INFO  c.c.CamperAppServerApplication - Starting CamperAppServerApplication using Java 17.0.6 with PID 46260 (C:\Users\Aless\Desktop\Camper_App\Camper_App_Server\target\classes started by Aless in C:\Users\Aless\Desktop\Camper_App\Camper_App_Server)
-00:04:56.921 [restartedMain] INFO  c.c.CamperAppServerApplication - No active profile set, falling back to 1 default profile: "default"
-00:04:57.072 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-00:04:57.093 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 9 JPA repository interfaces.
-00:04:57.172 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-00:04:57.172 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-00:04:57.172 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.10]
-00:04:57.187 [restartedMain] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-00:04:57.187 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 265 ms
-00:04:57.220 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-00:04:57.226 [restartedMain] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-00:04:57.226 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-00:04:57.227 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-20 - Starting...
-00:04:57.270 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-20 - Added connection org.postgresql.jdbc.PgConnection@240d6af6
-00:04:57.270 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-20 - Start completed.
-00:04:57.295 [restartedMain] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-00:04:57.339 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-00:04:57.445 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-00:04:57.682 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-00:04:57.788 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@50631da8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6a7c061d, org.springframework.security.web.context.SecurityContextHolderFilter@278146ec, org.springframework.security.web.header.HeaderWriterFilter@16fd05a5, org.springframework.web.filter.CorsFilter@4ca8c376, org.springframework.security.web.authentication.logout.LogoutFilter@5b84e588, com.camper_app_server.security.security.JwtAuthenticationFilter@4f541bfe, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3de5c5fe, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@43cb3fca, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@362d4c3d, org.springframework.security.web.session.SessionManagementFilter@1c37538a, org.springframework.security.web.access.ExceptionTranslationFilter@2b76211b, org.springframework.security.web.access.intercept.AuthorizationFilter@4c76c127]
-00:04:57.861 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-00:04:57.871 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-00:04:57.873 [restartedMain] INFO  c.c.CamperAppServerApplication - Started CamperAppServerApplication in 0.966 seconds (process running for 141028.609)
-00:04:57.933 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
-00:05:59.234 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-00:05:59.234 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-00:05:59.235 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-00:05:59.268 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'image' is not present.]
-00:08:14.103 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'image' is not present.]
-00:09:09.386 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'image' is not present.]
-00:14:16.174 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'image' is not present.]
-00:19:55.084 [http-nio-8080-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'image' is not present.]
-00:22:20.056 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.MultipartException: Failed to parse multipart servlet request]
-00:44:11.708 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'image' is not present.]
-00:45:28.123 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'image' is not present.]
-00:50:55.973 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 2 class path changes (2 additions, 0 deletions, 0 modifications)
-00:50:55.993 [Thread-78] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
-00:50:55.995 [Thread-78] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] - Destroying Spring FrameworkServlet 'dispatcherServlet'
-00:50:56.007 [Thread-78] WARN  o.a.c.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [HikariPool-20 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+00:04:24.254 [Thread-5] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+00:04:24.266 [Thread-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+00:04:24.270 [Thread-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+00:04:24.469 [restartedMain] INFO  c.c.CamperAppServerApplication - Starting CamperAppServerApplication using Java 17.0.6 with PID 20116 (C:\Users\Aless\Desktop\Camper_App\Camper_App_Server\target\classes started by Aless in C:\Users\Aless\Desktop\Camper_App\Camper_App_Server)
+00:04:24.469 [restartedMain] INFO  c.c.CamperAppServerApplication - No active profile set, falling back to 1 default profile: "default"
+00:04:25.105 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+00:04:25.148 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42 ms. Found 9 JPA repository interfaces.
+00:04:25.312 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+00:04:25.313 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+00:04:25.313 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.10]
+00:04:25.345 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+00:04:25.346 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 873 ms
+00:04:25.428 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+00:04:25.443 [restartedMain] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+00:04:25.444 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+00:04:25.446 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+00:04:25.521 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@3db32e92
+00:04:25.521 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+00:04:25.586 [restartedMain] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+00:04:25.723 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+00:04:25.926 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+00:04:26.346 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+00:04:26.521 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@29c93bcc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@484b7317, org.springframework.security.web.context.SecurityContextHolderFilter@68edf10, org.springframework.security.web.header.HeaderWriterFilter@76ca5df6, org.springframework.web.filter.CorsFilter@195cb2c7, org.springframework.security.web.authentication.logout.LogoutFilter@6942f44e, com.camper_app_server.security.security.JwtAuthenticationFilter@5d316668, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7975f824, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5d743f11, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@452acb3f, org.springframework.security.web.session.SessionManagementFilter@52581309, org.springframework.security.web.access.ExceptionTranslationFilter@2b1a83d6, org.springframework.security.web.access.intercept.AuthorizationFilter@2aeed893]
+00:04:26.640 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+00:04:26.656 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+00:04:26.660 [restartedMain] INFO  c.c.CamperAppServerApplication - Started CamperAppServerApplication in 2.236 seconds (process running for 3295.587)
+00:04:26.775 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+00:04:29.148 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 3 class path changes (0 additions, 0 deletions, 3 modifications)
+00:04:29.157 [Thread-7] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+00:04:29.159 [Thread-7] WARN  o.a.c.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [HikariPool-2 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.6/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.6/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.6/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
@@ -64,143 +51,49 @@
  java.base@17.0.6/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.6/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.6/java.lang.Thread.run(Thread.java:833)
-00:50:56.015 [Thread-78] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-00:50:56.022 [Thread-78] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-20 - Shutdown initiated...
-00:50:56.024 [Thread-78] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-20 - Shutdown completed.
-00:50:56.182 [restartedMain] INFO  c.c.CamperAppServerApplication - Starting CamperAppServerApplication using Java 17.0.6 with PID 46260 (C:\Users\Aless\Desktop\Camper_App\Camper_App_Server\target\classes started by Aless in C:\Users\Aless\Desktop\Camper_App\Camper_App_Server)
-00:50:56.182 [restartedMain] INFO  c.c.CamperAppServerApplication - No active profile set, falling back to 1 default profile: "default"
-00:50:56.361 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-00:50:56.384 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23 ms. Found 9 JPA repository interfaces.
-00:50:56.487 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-00:50:56.488 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-00:50:56.488 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.10]
-00:50:56.520 [restartedMain] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-00:50:56.520 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 335 ms
-00:50:56.559 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-00:50:56.568 [restartedMain] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-00:50:56.568 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-00:50:56.569 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-21 - Starting...
-00:50:56.614 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-21 - Added connection org.postgresql.jdbc.PgConnection@5b9600dd
-00:50:56.615 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-21 - Start completed.
-00:50:56.648 [restartedMain] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-00:50:56.708 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-00:50:56.826 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-00:50:57.081 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-00:50:57.206 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3bf3bf0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@607b96b8, org.springframework.security.web.context.SecurityContextHolderFilter@113ace7c, org.springframework.security.web.header.HeaderWriterFilter@712c52cf, org.springframework.web.filter.CorsFilter@67213abe, org.springframework.security.web.authentication.logout.LogoutFilter@6fd43ea7, com.camper_app_server.security.security.JwtAuthenticationFilter@6a9bcfd5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@697b0529, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7a5298e3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@572b78dd, org.springframework.security.web.session.SessionManagementFilter@47049198, org.springframework.security.web.access.ExceptionTranslationFilter@173de082, org.springframework.security.web.access.intercept.AuthorizationFilter@7bd96c73]
-00:50:57.284 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-00:50:57.296 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-00:50:57.299 [restartedMain] INFO  c.c.CamperAppServerApplication - Started CamperAppServerApplication in 1.141 seconds (process running for 143788.034)
-00:50:57.351 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
-00:51:02.839 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 1 class path change (0 additions, 1 deletion, 0 modifications)
-00:51:02.847 [Thread-82] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
-00:51:02.848 [Thread-82] WARN  o.a.c.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [HikariPool-21 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+00:04:29.159 [Thread-7] WARN  o.a.c.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [HikariPool-2 connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.6/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.6/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.6/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
- java.base@17.0.6/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
- java.base@17.0.6/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
- java.base@17.0.6/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.6/java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:460)
+ java.base@17.0.6/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1061)
  java.base@17.0.6/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.6/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.6/java.lang.Thread.run(Thread.java:833)
-00:51:02.850 [Thread-82] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-00:51:02.850 [Thread-82] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-21 - Shutdown initiated...
-00:51:02.851 [Thread-82] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-21 - Shutdown completed.
-00:51:02.923 [restartedMain] INFO  c.c.CamperAppServerApplication - Starting CamperAppServerApplication using Java 17.0.6 with PID 46260 (C:\Users\Aless\Desktop\Camper_App\Camper_App_Server\target\classes started by Aless in C:\Users\Aless\Desktop\Camper_App\Camper_App_Server)
-00:51:02.924 [restartedMain] INFO  c.c.CamperAppServerApplication - No active profile set, falling back to 1 default profile: "default"
-00:51:03.071 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-00:51:03.093 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22 ms. Found 9 JPA repository interfaces.
-00:51:03.169 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-00:51:03.169 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-00:51:03.169 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.10]
-00:51:03.184 [restartedMain] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-00:51:03.184 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 259 ms
-00:51:03.217 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-00:51:03.222 [restartedMain] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-00:51:03.222 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-00:51:03.223 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-22 - Starting...
-00:51:03.265 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-22 - Added connection org.postgresql.jdbc.PgConnection@4a8508f
-00:51:03.265 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-22 - Start completed.
-00:51:03.287 [restartedMain] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-00:51:03.332 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-00:51:03.449 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-00:51:03.681 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-00:51:03.788 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@18ff2739, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6efa1f94, org.springframework.security.web.context.SecurityContextHolderFilter@26ad75fa, org.springframework.security.web.header.HeaderWriterFilter@4f80ee13, org.springframework.web.filter.CorsFilter@189285bd, org.springframework.security.web.authentication.logout.LogoutFilter@52b498fa, com.camper_app_server.security.security.JwtAuthenticationFilter@5fb6f2f8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@13670d2e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5bdf9927, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@44a46d65, org.springframework.security.web.session.SessionManagementFilter@70168ec8, org.springframework.security.web.access.ExceptionTranslationFilter@de71302, org.springframework.security.web.access.intercept.AuthorizationFilter@5e20495b]
-00:51:03.848 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-00:51:03.857 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-00:51:03.859 [restartedMain] INFO  c.c.CamperAppServerApplication - Started CamperAppServerApplication in 0.951 seconds (process running for 143794.595)
-00:51:03.911 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
-00:51:13.392 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-00:51:13.392 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-00:51:13.393 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-00:51:13.420 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'image' is not present.]
-00:57:03.117 [http-nio-8080-exec-6] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'file' is not present.]
-00:59:18.143 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.RuntimeException: Could not read the file!]
-01:01:44.039 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.RuntimeException: Could not read the file!]
-01:01:56.399 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.RuntimeException: Could not read the file!]
-01:03:13.533 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.RuntimeException: Could not read the file!]
-01:03:54.976 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.RuntimeException: Could not read the file!]
-01:04:01.989 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.RuntimeException: Could not read the file!]
-01:07:37.831 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.RuntimeException: Could not read the file!]
-01:08:18.226 [http-nio-8080-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.MultipartException: Failed to parse multipart servlet request]
-01:12:11.130 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.RuntimeException: Could not read the file!]
-01:12:22.742 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.multipart.MultipartException: Failed to parse multipart servlet request]
-01:14:33.996 [http-nio-8080-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.lang.RuntimeException: Could not read the file!]
-12:20:55.137 [HikariPool-22 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-22 - Thread starvation or clock leap detected (housekeeper delta=8h42m20s390ms954µs100ns).
-13:40:47.737 [HikariPool-22 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-22 - Thread starvation or clock leap detected (housekeeper delta=2m20s78ms361µs300ns).
-13:40:58.211 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.util.NoSuchElementException: No value present]
-13:40:58.479 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.util.NoSuchElementException: No value present]
-13:57:37.937 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.util.NoSuchElementException: No value present]
-13:57:38.908 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.util.NoSuchElementException: No value present]
-13:57:41.403 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.util.NoSuchElementException: No value present]
-14:25:18.225 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.util.NoSuchElementException: No value present]
-14:25:29.431 [http-nio-8080-exec-6] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.util.NoSuchElementException: No value present]
-14:29:29.564 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.util.NoSuchElementException: No value present]
-14:41:14.923 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.util.NoSuchElementException: No value present]
-14:50:23.075 [http-nio-8080-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.util.NoSuchElementException: No value present]
-14:56:58.265 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.util.NoSuchElementException: No value present]
-14:59:06.847 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.util.NoSuchElementException: No value present]
-16:51:06.090 [http-nio-8080-exec-6] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [java.util.NoSuchElementException: No value present]
-17:06:29.935 [HikariPool-22 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-22 - Thread starvation or clock leap detected (housekeeper delta=1m9s143ms964µs500ns).
-17:28:19.575 [File Watcher] INFO  o.s.b.d.a.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener - Restarting due to 2 class path changes (2 additions, 0 deletions, 0 modifications)
-17:28:19.659 [Thread-86] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
-17:28:19.667 [Thread-86] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] - Destroying Spring FrameworkServlet 'dispatcherServlet'
-17:28:19.739 [Thread-86] WARN  o.a.c.loader.WebappClassLoaderBase - The web application [ROOT] appears to have started a thread named [HikariPool-22 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@17.0.6/jdk.internal.misc.Unsafe.park(Native Method)
- java.base@17.0.6/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
- java.base@17.0.6/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
- java.base@17.0.6/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
- java.base@17.0.6/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
- java.base@17.0.6/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
- java.base@17.0.6/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
- java.base@17.0.6/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
- java.base@17.0.6/java.lang.Thread.run(Thread.java:833)
-17:28:19.766 [Thread-86] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-17:28:19.791 [Thread-86] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-22 - Shutdown initiated...
-17:28:19.794 [Thread-86] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-22 - Shutdown completed.
-17:28:20.133 [restartedMain] INFO  c.c.CamperAppServerApplication - Starting CamperAppServerApplication using Java 17.0.6 with PID 46260 (C:\Users\Aless\Desktop\Camper_App\Camper_App_Server\target\classes started by Aless in C:\Users\Aless\Desktop\Camper_App\Camper_App_Server)
-17:28:20.133 [restartedMain] INFO  c.c.CamperAppServerApplication - No active profile set, falling back to 1 default profile: "default"
-17:28:20.571 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-17:28:20.594 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 24 ms. Found 9 JPA repository interfaces.
-17:28:20.717 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
-17:28:20.717 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-17:28:20.717 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.10]
-17:28:20.761 [restartedMain] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-17:28:20.761 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 628 ms
-17:28:20.810 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-17:28:20.810 [restartedMain] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-17:28:20.810 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-17:28:20.810 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-23 - Starting...
-17:28:20.859 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-23 - Added connection org.postgresql.jdbc.PgConnection@457031a7
-17:28:20.861 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-23 - Start completed.
-17:28:20.887 [restartedMain] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-17:28:20.963 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-17:28:21.089 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-17:28:21.362 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-17:28:21.489 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2b737e4e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6737004a, org.springframework.security.web.context.SecurityContextHolderFilter@692d6ad3, org.springframework.security.web.header.HeaderWriterFilter@73fee1eb, org.springframework.web.filter.CorsFilter@42758894, org.springframework.security.web.authentication.logout.LogoutFilter@6369a5bf, com.camper_app_server.security.security.JwtAuthenticationFilter@4a622317, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@51f35e18, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@55060c74, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@19a4c13f, org.springframework.security.web.session.SessionManagementFilter@56d52e85, org.springframework.security.web.access.ExceptionTranslationFilter@66dbd7b1, org.springframework.security.web.access.intercept.AuthorizationFilter@6657abbe]
-17:28:21.576 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
-17:28:21.587 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
-17:28:21.587 [restartedMain] INFO  c.c.CamperAppServerApplication - Started CamperAppServerApplication in 1.492 seconds (process running for 203633.438)
-17:28:21.655 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
-17:29:08.358 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat-1].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-17:29:08.358 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+00:04:29.162 [Thread-7] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+00:04:29.163 [Thread-7] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+00:04:29.166 [Thread-7] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+00:04:29.245 [restartedMain] INFO  c.c.CamperAppServerApplication - Starting CamperAppServerApplication using Java 17.0.6 with PID 20116 (C:\Users\Aless\Desktop\Camper_App\Camper_App_Server\target\classes started by Aless in C:\Users\Aless\Desktop\Camper_App\Camper_App_Server)
+00:04:29.245 [restartedMain] INFO  c.c.CamperAppServerApplication - No active profile set, falling back to 1 default profile: "default"
+00:04:29.431 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+00:04:29.463 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 32 ms. Found 9 JPA repository interfaces.
+00:04:29.586 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+00:04:29.586 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+00:04:29.586 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.10]
+00:04:29.607 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+00:04:29.607 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 359 ms
+00:04:29.651 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+00:04:29.659 [restartedMain] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+00:04:29.660 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+00:04:29.660 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Starting...
+00:04:29.719 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@45f07938
+00:04:29.719 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Start completed.
+00:04:29.758 [restartedMain] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+00:04:29.849 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+00:04:30.032 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+00:04:30.406 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+00:04:30.544 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@51f55dda, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@36958c71, org.springframework.security.web.context.SecurityContextHolderFilter@7fb9f052, org.springframework.security.web.header.HeaderWriterFilter@7e1e12f6, org.springframework.web.filter.CorsFilter@acf2363, org.springframework.security.web.authentication.logout.LogoutFilter@6ba184d9, com.camper_app_server.security.security.JwtAuthenticationFilter@af637d3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3d83fbd1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3304d735, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@65b5abd8, org.springframework.security.web.session.SessionManagementFilter@3c5a8398, org.springframework.security.web.access.ExceptionTranslationFilter@3983c08, org.springframework.security.web.access.intercept.AuthorizationFilter@5c766c7e]
+00:04:30.618 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+00:04:30.630 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+00:04:30.634 [restartedMain] INFO  c.c.CamperAppServerApplication - Started CamperAppServerApplication in 1.415 seconds (process running for 3299.559)
+00:04:30.702 [restartedMain] INFO  o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+00:06:28.433 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+00:06:28.433 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+00:06:28.435 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+00:47:44.162 [HikariPool-3 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Thread starvation or clock leap detected (housekeeper delta=2m34s676ms459µs100ns).
+03:20:58.963 [HikariPool-3 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Thread starvation or clock leap detected (housekeeper delta=1h1m43s390ms484µs100ns).
+05:41:47.199 [HikariPool-3 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Thread starvation or clock leap detected (housekeeper delta=2h15m48s174ms109µs200ns).
+06:15:33.951 [HikariPool-3 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Thread starvation or clock leap detected (housekeeper delta=29m16s685ms628µs700ns).
+07:10:44.002 [HikariPool-3 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Thread starvation or clock leap detected (housekeeper delta=50m9s992ms970µs300ns).
+08:30:32.825 [HikariPool-3 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Thread starvation or clock leap detected (housekeeper delta=1h15m18s751ms277µs600ns).
+09:05:14.388 [HikariPool-3 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-3 - Thread starvation or clock leap detected (housekeeper delta=34m41s563ms764µs800ns).
