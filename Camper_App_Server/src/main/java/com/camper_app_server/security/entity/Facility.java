@@ -15,7 +15,14 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.SecondaryTable;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +36,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name="facilities")
+
 @NoArgsConstructor
 @AllArgsConstructor
 public class Facility {
@@ -41,23 +49,33 @@ public class Facility {
 	@Column(nullable = false)
 	private String name;
 	
-	@Column(nullable = false)
+	@Column(nullable = false,columnDefinition = "TEXT")
 	private String description;
 	
-	@Column(unique = true, nullable = false)
+	@Column(unique = true)
 	private String phoneNumber;
 	
 	@Column(name="url")
 	private String cover;
 	
+	@OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	private Address address;
+	
 	@Column(name ="website")
 	private String officialSite;
+	
+	@Column(name="email")
+	private String email;
+	
 	@Enumerated(EnumType.STRING)
 	private FacilityType facilityType;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Set<FacilityServicesEntity> serviceFacility;
 	
-	@OneToMany(fetch = FetchType.EAGER,targetEntity = Comment.class)
-	private List<Comment> comment;
+	@OneToMany(targetEntity = FileData.class)
+	private List<FileData> fotoUpLoadFromUser;
+//	
+//	@OneToMany(fetch = FetchType.EAGER,targetEntity = Comment.class)
+//	private List<Comment> comment;
 }

@@ -42,6 +42,8 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@Column
+	private String photoProfile;
 	@Column(nullable = false)
 	private String userName;
 	@Column(nullable = false)
@@ -51,6 +53,7 @@ public class User {
 	@Column(unique = true, nullable = false)
 	private String email;
 	@Column(nullable = false)
+	@JsonIgnore
 	private String password;
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
@@ -58,20 +61,6 @@ public class User {
 	
 	@OneToMany
 	private List<Facility> preference;
-	// @ManyToMany(targetEntity = Prenotazione.class, fetch = FetchType.EAGER)
-	// @JoinTable(name = "prenotazioni_lista_utenti", joinColumns = @JoinColumn(name
-	// = "utente_id "), inverseJoinColumns = @JoinColumn(name = "prenotazione_id"))
-	// @JsonIgnore
-	// private List<?> listaPrenotazioni = new ArrayList(null)<?>();
-
-	// public Utente(String userName, String nome, String cognome, String email) {
-	// super();
-	// this.userName = userName;
-	// this.nome = nome;
-	// this.pass
-	// this.cognome = cognome;
-	// this.email = email;
-	//
-	// }
+	
 
 }

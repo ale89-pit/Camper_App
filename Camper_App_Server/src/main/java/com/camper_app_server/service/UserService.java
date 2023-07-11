@@ -1,5 +1,8 @@
 package com.camper_app_server.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,15 +20,28 @@ public class UserService {
 
 	@Autowired UtenteDAO userDAO;
 	
-	public ResponseEntity<?> getAll(){
-		return ResponseEntity.ok(userDAO.findAll());
+	public List<User> getAll(){
+		return userDAO.findAll();
 	}
 	
-	public ResponseEntity<?> getById(Long userId){
+	public User getById(Long userId){
 		if(!userDAO.existsById(userId)) {
 			throw new MyAPIException(HttpStatus.NOT_FOUND ,"nessun utente trovato");
 		}
-		return ResponseEntity.ok(userDAO.findById(userId).get());
+		return userDAO.findById(userId).get();
+	}
+	public Optional<User> getByUsername(String userName) {
+		if(!userDAO.existsByUserName(userName)) {
+			throw new MyAPIException(HttpStatus.NOT_FOUND ,"nessun utente trovato");
+		}
+		return userDAO.findByUserName(userName);
+	}
+	//metodo da vedere bene perchè devo aggiornare l'utente
+	public String addImageProfile(Long userId,String urlPhotoUser) {
+		User u = userDAO.findById(userId).get();
+		u.setPhotoProfile(urlPhotoUser);
+		userDAO.save(u);
+		return "foto aggiunta";
 	}
 	
 	public ResponseEntity<?> updateUser(Long userid,UtenteDTO u){
@@ -34,11 +50,25 @@ public class UserService {
 		}
 		User user = userDAO.findById(userid).get();
 		System.out.println(user);
-		System.err.println(u.getCognome());
-		user.setCognome(u.getCognome());
+		if(u.getCognome()!= null) {
+			user.setCognome(u.getCognome());
+		}
+		if(u.getPhotoProfile() != null) {
+			user.setPhotoProfile(u.getPhotoProfile());
+			
+		}
+		if(u.getEmail() != null) {
 		user.setEmail(u.getEmail());
-		user.setNome(u.getNome());
-		user.setUserName(u.getUserName());
+		
+		}
+		if(u.getNome() != null) {
+			user.setNome(u.getNome());
+			
+		}
+		if(u.getUserName() != null) {
+			
+			user.setUserName(u.getUserName());
+		}
 		return ResponseEntity.ok(userDAO.save(user));
 	}
 	

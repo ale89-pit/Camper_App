@@ -1,34 +1,39 @@
 package com.camper_app_server.security.entity;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Lob;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name="image")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comment {
+@Builder
+public class FileData {
+
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@ManyToOne
-	private User user;
-	@ManyToOne
-	private Facility facility;
-	@Column(nullable = false)
-	private String title;
-	@Column(nullable = false,columnDefinition = "TEXT")
-	private String body;
-	@Column(nullable = false)
-	private LocalDate date;
+	
+	@Column(nullable = false,unique = true)
+	private String nome;
+
+	private String filePath;
+	
+	
+	public FileData(String filename, String url) {
+		 this.nome = filename;
+		    this.filePath = url;
+	}
 }

@@ -2,7 +2,8 @@ package com.camper_app_server.enumerated;
 
 
 public enum EServiceFacility {
-
+	
+	WATER_LOADING,
 	SHOWER,
 	HOT_SHOWER,
 	TOILETTE,
