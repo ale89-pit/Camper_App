@@ -18,6 +18,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
@@ -71,6 +72,9 @@ public class Facility {
 	
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Set<FacilityServicesEntity> serviceFacility;
+	
+	@OneToMany(targetEntity = FileData.class)
+	private List<FileData> fotoUpLoadFromUser;
 //	
 //	@OneToMany(fetch = FetchType.EAGER,targetEntity = Comment.class)
 //	private List<Comment> comment;
