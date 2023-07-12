@@ -19,6 +19,7 @@ import com.camper_app_server.security.entity.Address;
 import com.camper_app_server.security.entity.Comune;
 import com.camper_app_server.security.entity.Facility;
 import com.camper_app_server.security.entity.FacilityServicesEntity;
+import com.camper_app_server.security.entity.FileData;
 import com.camper_app_server.security.exception.MyAPIException;
 import com.camper_app_server.security.payload.FacilityDTO;
 
@@ -177,6 +178,14 @@ public class FacilityService {
 		}
 		
 		return old;
+	}
+	
+	public Facility addPhotoByUser(Long facility_Id,FileData photo) {
+		Facility f = facilityRepository.findById(facility_Id).get();
+		
+		f.getFotoUpLoadFromUser().add(photo);
+		facilityRepository.save(f);
+		return null;
 	}
 
 	public ResponseEntity<String> deleteFacility(Long facilityId) {
