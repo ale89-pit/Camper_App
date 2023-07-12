@@ -63,38 +63,42 @@ public class UserController {
 		return ResponseEntity.ok(userService.updateUser(user_id, u));
 	}
 	
+	
+	//Sezione per aggiungere la foto profilo per l'utente loggato
+	
 	@PostMapping("/{user_id}/image")
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> addPhotoProfile(@PathVariable Long user_id,@RequestParam("image") MultipartFile image){
-		  String message = "";
-		    try {
+		String message = "";
+		try {
 //		    	salvo la foto in locale 
-		      fileDataService.save(image);
-		      FileData f = new FileData();
-		      
-		      
-		      f.setNome(image.getOriginalFilename());
+			fileDataService.save(image);
+			FileData f = new FileData();
+			
+			
+			f.setNome(image.getOriginalFilename());
 //		      recupero la foto in locale con il metodo load() del fileDataLocal 
-		      Resource fileTrovato =  fileDataService.load(image.getOriginalFilename());
-		      
+			Resource fileTrovato =  fileDataService.load(image.getOriginalFilename());
+			
 //		      recuperanto la foto eseguo questa funzione per recuperare il path giusto che si userà poi nel frontEnd
-		      String url = MvcUriComponentsBuilder
-			          .fromMethodName(FacilityController.class, "getFile", fileTrovato.getFilename().toString()).build().toString();
-
-		      f.setFilePath(url);
-		      
-		      //salvo il FileData, associato alla foto appena inserita, nel db
-		      fileDataRepository.save(f);
-		      userService.addImageProfile(user_id, url);
-		      
-		      message = "Uploaded the file successfully: " + image.getOriginalFilename();
-		      return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message + f+image.getOriginalFilename()));
-		    } catch (Exception e) {
-		      message = "Could not upload the file: " + image.getOriginalFilename() + ". Error: " + e.getMessage();
-		      
-		      
-		      return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
-		    }
+			String url = MvcUriComponentsBuilder
+					.fromMethodName(FacilityController.class, "getFile", fileTrovato.getFilename().toString()).build().toString();
+			
+			f.setFilePath(url);
+			
+			//salvo il FileData, associato alla foto appena inserita, nel db
+			fileDataRepository.save(f);
+			userService.addImageProfile(user_id, url);
+			
+			message = "Uploaded the file successfully: " + image.getOriginalFilename();
+			return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message + f+image.getOriginalFilename()));
+		} catch (Exception e) {
+			message = "Could not upload the file: " + image.getOriginalFilename() + ". Error: " + e.getMessage();
+			
+			
+			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+		}
 	}
+
 	
 }
