@@ -73,9 +73,9 @@ public class Facility {
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Set<FacilityServicesEntity> serviceFacility;
 	
+	
 	@OneToMany(targetEntity = FileData.class)
+	@JoinTable(name = "image_facility", joinColumns = @JoinColumn(name = "facility_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "image_id", referencedColumnName = "id"))
 	private List<FileData> fotoUpLoadFromUser;
-//	
-//	@OneToMany(fetch = FetchType.EAGER,targetEntity = Comment.class)
-//	private List<Comment> comment;
+
 }

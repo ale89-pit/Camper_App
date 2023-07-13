@@ -42,6 +42,7 @@ public class FileDataService implements FileDataLocal {
 	}
 	@Override
 	public void save(MultipartFile file) {
+	
 		System.out.println(FOLDER_PATH);
 	    try {
 	      Files.copy(file.getInputStream(), this.FOLDER_PATH.resolve(file.getOriginalFilename()));

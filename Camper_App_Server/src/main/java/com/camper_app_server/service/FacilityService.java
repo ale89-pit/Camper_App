@@ -1,9 +1,13 @@
 package com.camper_app_server.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +23,7 @@ import com.camper_app_server.security.entity.Address;
 import com.camper_app_server.security.entity.Comune;
 import com.camper_app_server.security.entity.Facility;
 import com.camper_app_server.security.entity.FacilityServicesEntity;
+import com.camper_app_server.security.entity.FileData;
 import com.camper_app_server.security.exception.MyAPIException;
 import com.camper_app_server.security.payload.FacilityDTO;
 
@@ -46,7 +51,13 @@ public class FacilityService {
 		if (!facilityRepository.existsById(facilityId)) {
 			throw new MyAPIException(HttpStatus.NOT_FOUND, "nessuna struttura trovata");
 		}
-		return (facilityRepository.findById(facilityId).get());
+		
+		  Facility f = facilityRepository.findById(facilityId).get();
+		    Set<FacilityServicesEntity> serviceFacilitySet = f.getServiceFacility();
+		    List<FacilityServicesEntity> serviceFacilityList = new ArrayList<>(serviceFacilitySet);
+		    Collections.sort(serviceFacilityList, (a, b) -> Long.compare(a.getId(), b.getId()));
+		    f.setServiceFacility(new LinkedHashSet<>(serviceFacilityList));
+		    return f;
 	}
 
 	public Facility insertFacility(FacilityDTO f) {
@@ -177,6 +188,14 @@ public class FacilityService {
 		}
 		
 		return old;
+	}
+	
+	public Facility addPhotoByUser(Long facility_Id,FileData photo) {
+		Facility f = facilityRepository.findById(facility_Id).get();
+		
+		f.getFotoUpLoadFromUser().add(photo);
+		facilityRepository.save(f);
+		return null;
 	}
 
 	public ResponseEntity<String> deleteFacility(Long facilityId) {
