@@ -1,6 +1,7 @@
 package com.camper_app_server.security.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,5 +31,5 @@ public class Comment {
 	@Column(nullable = false,columnDefinition = "TEXT")
 	private String body;
 	@Column(nullable = false)
-	private LocalDate date;
+	private LocalDateTime date;
 }

@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,6 +64,18 @@ public class UserController {
 		return ResponseEntity.ok(userService.updateUser(user_id, u));
 	}
 	
+	
+	@PutMapping("/{user_id}/{facility_id}")
+	@PreAuthorize("hasRole('USER')")
+	public ResponseEntity<?> addFacilityToPreference(@PathVariable Long user_id,@PathVariable Long facility_id){
+		return ResponseEntity.ok(userService.addFacilityToPreference(user_id, facility_id));
+	}
+	
+	@DeleteMapping("/{user_id}/{facility_id}")
+	@PreAuthorize("hasRole('USER')")
+	public ResponseEntity<?> removeFacilityToPreference(@PathVariable Long user_id,@PathVariable Long facility_id){
+		return ResponseEntity.ok(userService.removeFacilityToPreference(user_id, facility_id));
+	}
 	
 	//Sezione per aggiungere la foto profilo per l'utente loggato
 	

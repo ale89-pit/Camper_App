@@ -1,9 +1,13 @@
 package com.camper_app_server.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,7 +51,13 @@ public class FacilityService {
 		if (!facilityRepository.existsById(facilityId)) {
 			throw new MyAPIException(HttpStatus.NOT_FOUND, "nessuna struttura trovata");
 		}
-		return (facilityRepository.findById(facilityId).get());
+		
+		  Facility f = facilityRepository.findById(facilityId).get();
+		    Set<FacilityServicesEntity> serviceFacilitySet = f.getServiceFacility();
+		    List<FacilityServicesEntity> serviceFacilityList = new ArrayList<>(serviceFacilitySet);
+		    Collections.sort(serviceFacilityList, (a, b) -> Long.compare(a.getId(), b.getId()));
+		    f.setServiceFacility(new LinkedHashSet<>(serviceFacilityList));
+		    return f;
 	}
 
 	public Facility insertFacility(FacilityDTO f) {

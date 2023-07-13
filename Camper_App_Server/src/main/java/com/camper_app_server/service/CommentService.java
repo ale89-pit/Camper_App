@@ -2,6 +2,7 @@ package com.camper_app_server.service;
 
 import java.awt.print.Pageable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,7 @@ public class CommentService {
 		User u = userRepository.findById(commentdto.getUser_id()).get();
 		Facility f = facilityRepository.findById(commentdto.getFacility_id()).get();
 		Comment c = new Comment();
-		c.setDate(LocalDate.now());
+		c.setDate(LocalDateTime.now());
 		c.setBody(commentdto.getBody());
 		c.setTitle(commentdto.getTitle());
 		c.setUser(u);
