@@ -197,6 +197,28 @@ public class FacilityService {
 		facilityRepository.save(f);
 		return null;
 	}
+	
+	public String evaluation(Long facility_id,Double vote) {
+		Facility f = facilityRepository.findById(facility_id).get();
+		
+		if(f.getEvaluation()!= null) {
+			
+			f.setEvaluation(f.getEvaluation()+vote);
+		}else {
+			f.setEvaluation(vote);
+		}
+	if(f.getVoters()!= null) {
+			
+		f.setVoters(f.getVoters()+1);
+		}else {
+			f.setVoters(1.0);
+		}
+		
+		f.setAverage(f.getEvaluation()/f.getVoters());
+		facilityRepository.save(f);
+		return "voto acquisito!!";
+		
+	}
 
 	public ResponseEntity<String> deleteFacility(Long facilityId) {
 		if (!facilityRepository.existsById(facilityId)) {
@@ -208,9 +230,9 @@ public class FacilityService {
 		return ResponseEntity.ok("Struttura eliminata");
 	}
 	
-	public List<Facility> searchFacility(String desc,String title){
+	public List<Facility> searchFacility(String desc,String tit){
 		
-		List<Facility> querySearch = facilityRepository.findByDescriptionContainingOrNameContaining(desc, title);
+		List<Facility> querySearch = facilityRepository.findByDescriptionIgnoreCaseContainingOrNameIgnoreCaseContaining(desc,tit);
 		
 		if(querySearch.isEmpty()) {
 			 throw new MyAPIException(HttpStatus.NOT_FOUND, "nessuna struttura trovata");
