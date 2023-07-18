@@ -52,7 +52,7 @@ public class Facility {
 	@Column(nullable = false,columnDefinition = "TEXT")
 	private String description;
 	
-	@Column(unique = true)
+	@Column
 	private String phoneNumber;
 	
 	@Column(name="url")

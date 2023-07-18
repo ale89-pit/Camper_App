@@ -73,6 +73,10 @@ public class FacilityController {
 			@PathParam(value = "tit") String tit) {
 		return ResponseEntity.ok(facilityService.searchFacility(desc,tit));
 	}
+	@GetMapping("/search/comune/{comuneName}")
+	public ResponseEntity<?> searchByComuneName(@PathVariable String comuneName){
+		return ResponseEntity.ok(facilityService.getByComuneName(comuneName));
+	}
 
 	@PostMapping("/facilities")
 	@PreAuthorize("hasRole('USER')")

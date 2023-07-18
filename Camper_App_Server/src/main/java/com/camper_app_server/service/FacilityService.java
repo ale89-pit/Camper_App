@@ -59,6 +59,11 @@ public class FacilityService {
 		    f.setServiceFacility(new LinkedHashSet<>(serviceFacilityList));
 		    return f;
 	}
+	public List<Facility> getByComuneName(String comuneName){
+		 List<Facility> search =  facilityRepository.searchFacilityByComuneName(comuneName);
+		 return search;
+	
+	}
 
 	public Facility insertFacility(FacilityDTO f) {
 		Facility insert = new Facility();
