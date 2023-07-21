@@ -52,7 +52,7 @@ public class Facility {
 	@Column(nullable = false,columnDefinition = "TEXT")
 	private String description;
 	
-	@Column(unique = true)
+	@Column
 	private String phoneNumber;
 	
 	@Column(name="url")
@@ -69,6 +69,15 @@ public class Facility {
 	
 	@Enumerated(EnumType.STRING)
 	private FacilityType facilityType;
+	
+	@Column(name="totalevaluation")
+	private Double evaluation;
+	
+	@Column(name="totalvoters")
+	private Double voters;
+	
+	@Column(name="average")
+	private Double average;
 	
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Set<FacilityServicesEntity> serviceFacility;

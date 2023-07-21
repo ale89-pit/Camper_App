@@ -68,10 +68,14 @@ public class FacilityController {
 	}
 
 	@GetMapping("/search")
-//	http://localhost:8080/app/facilities/search?desc=camping&tit=camping
-	public ResponseEntity<?> searchFacility(@PathParam(value = "desc") String desc,
+//	http://localhost:8080/app/search?desc=camping&tit=camping
+	public ResponseEntity<?> searchFacility(@PathParam(value = "query") String desc,
 			@PathParam(value = "tit") String tit) {
-		return ResponseEntity.ok(facilityService.searchFacility(desc, tit));
+		return ResponseEntity.ok(facilityService.searchFacility(desc,tit));
+	}
+	@GetMapping("/search/comune/{comuneName}")
+	public ResponseEntity<?> searchByComuneName(@PathVariable String comuneName){
+		return ResponseEntity.ok(facilityService.getByComuneName(comuneName));
 	}
 
 	@PostMapping("/facilities")
@@ -190,7 +194,11 @@ public class FacilityController {
 //fine sezione foto
 	
 	
-	
+	@PostMapping("/facilities/vote")
+	@PreAuthorize("hasRole('USER')")
+	public ResponseEntity<?> evaluationFacility(@PathParam(value="facilityId")Long facilityId,@PathParam(value="vote")Double vote){
+		return ResponseEntity.ok(facilityService.evaluation(facilityId, vote));
+	}
 
 	@PutMapping("/facilities/{facility_id}")
 	@PreAuthorize("hasRole('USER')")
