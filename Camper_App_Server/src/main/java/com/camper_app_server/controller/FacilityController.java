@@ -207,7 +207,7 @@ public class FacilityController {
 	}
 
 	@DeleteMapping("/facilities/{facility_id}")
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<String> deleteFacility(@PathVariable Long facility_id) {
 		facilityService.deleteFacility(facility_id);
 		return ResponseEntity.ok("Struttura Eliminata");
