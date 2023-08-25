@@ -30,6 +30,11 @@ public class ProvinceComuniController {
 		return ResponseEntity.ok(provinceRepository.findAll());
 	}
 	
+	@GetMapping("/allComuni")
+	public ResponseEntity<?> getAllComuni(){
+		return ResponseEntity.ok(comuniRepository.findAll());
+	}
+	
 	@GetMapping("/comuni")
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> getComuniByProvince(@RequestParam (value="sign") String provinceSign){
