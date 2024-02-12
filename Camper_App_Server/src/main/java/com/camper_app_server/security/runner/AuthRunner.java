@@ -1,5 +1,6 @@
 package com.camper_app_server.security.runner;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,12 @@ import com.camper_app_server.security.repository.UtenteDAO;
 import com.camper_app_server.security.service.AuthService;
 import com.camper_app_server.service.FileDataService;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 
 @Component
+@Slf4j
 public class AuthRunner implements ApplicationRunner {
 
 	@Autowired
@@ -53,10 +57,11 @@ public class AuthRunner implements ApplicationRunner {
 		if(roleRepository.findAll().isEmpty()) {
 			setRoleDefault();
 		}
-		if(facilitiServiceRepository.findAll().isEmpty()) {
+		if(facilitiServiceRepository.findAll().isEmpty()|| facilitiServiceRepository.findAll().size() < EServiceFacility.values().length) {
 			setServiceFacility();
 		}
 
+		
 
 
 	}
@@ -84,46 +89,67 @@ public class AuthRunner implements ApplicationRunner {
 	}
 	
 	public void setServiceFacility() {
-		FacilityServicesEntity loadWater = new FacilityServicesEntity();
-		loadWater.setService(EServiceFacility.WATER_LOADING);
-		facilitiServiceRepository.save(loadWater);
-		
-		FacilityServicesEntity elec = new FacilityServicesEntity();
-		elec.setService(EServiceFacility.ELECTRICITY);
-		facilitiServiceRepository.save(elec);
-		
-		FacilityServicesEntity shower = new FacilityServicesEntity();
-		shower.setService(EServiceFacility.SHOWER);
-		facilitiServiceRepository.save(shower);
-		
-		FacilityServicesEntity hotShower = new FacilityServicesEntity();
-		hotShower.setService(EServiceFacility.HOT_SHOWER);
-		facilitiServiceRepository.save(hotShower);
-		
-		FacilityServicesEntity toilette = new FacilityServicesEntity();
-		toilette.setService(EServiceFacility.TOILETTE);
-		facilitiServiceRepository.save(toilette);
-		
-		FacilityServicesEntity wifi = new FacilityServicesEntity();
-		wifi.setService(EServiceFacility.WI_FI);
-		facilitiServiceRepository.save(wifi);
-		
-		FacilityServicesEntity keptNight = new FacilityServicesEntity();
-		keptNight.setService(EServiceFacility.KEPT_NIGHT);
-		facilitiServiceRepository.save(keptNight );
-		
-		FacilityServicesEntity toiletteFlush = new FacilityServicesEntity();
-		toiletteFlush.setService(EServiceFacility.TOLIETTE_FLUSH);
-		facilitiServiceRepository.save(toiletteFlush);
-		
-		FacilityServicesEntity nauticFlush = new FacilityServicesEntity();
-		nauticFlush.setService(EServiceFacility.NAUTICAL_TOILETTE_FLUSH);
-		facilitiServiceRepository.save(nauticFlush);
-		
-		FacilityServicesEntity market = new FacilityServicesEntity();
-		market.setService(EServiceFacility.MARKET);
-		facilitiServiceRepository.save(market);
-		
+		List<FacilityServicesEntity> listaServiceSaved =  facilitiServiceRepository.findAll();
+		for (EServiceFacility e : EServiceFacility.values()) {
+		    boolean alreadyExists = false;
+
+		    for (FacilityServicesEntity alreadySaved : listaServiceSaved) {
+		        if (e == alreadySaved.getService()) {
+		            alreadyExists = true;
+		            break;
+		        }
+		    }
+		    
+
+		    if (!alreadyExists) {
+		        FacilityServicesEntity x = new FacilityServicesEntity();
+		        x.setService(e);
+		        System.out.println(x);
+		        log.info(x.toString()+ "---------------------------------------------------");
+		        facilitiServiceRepository.save(x);
+		        
+		    }
+		}
+//		FacilityServicesEntity loadWater = new FacilityServicesEntity();
+//		loadWater.setService(EServiceFacility.WATER_LOADING);
+//		facilitiServiceRepository.save(loadWater);
+//		
+//		FacilityServicesEntity elec = new FacilityServicesEntity();
+//		elec.setService(EServiceFacility.ELECTRICITY);
+//		facilitiServiceRepository.save(elec);
+//		
+//		FacilityServicesEntity shower = new FacilityServicesEntity();
+//		shower.setService(EServiceFacility.SHOWER);
+//		facilitiServiceRepository.save(shower);
+//		
+//		FacilityServicesEntity hotShower = new FacilityServicesEntity();
+//		hotShower.setService(EServiceFacility.HOT_SHOWER);
+//		facilitiServiceRepository.save(hotShower);
+//		
+//		FacilityServicesEntity toilette = new FacilityServicesEntity();
+//		toilette.setService(EServiceFacility.TOILETTE);
+//		facilitiServiceRepository.save(toilette);
+//		
+//		FacilityServicesEntity wifi = new FacilityServicesEntity();
+//		wifi.setService(EServiceFacility.WI_FI);
+//		facilitiServiceRepository.save(wifi);
+//		
+//		FacilityServicesEntity keptNight = new FacilityServicesEntity();
+//		keptNight.setService(EServiceFacility.KEPT_NIGHT);
+//		facilitiServiceRepository.save(keptNight );
+//		
+//		FacilityServicesEntity toiletteFlush = new FacilityServicesEntity();
+//		toiletteFlush.setService(EServiceFacility.TOLIETTE_FLUSH);
+//		facilitiServiceRepository.save(toiletteFlush);
+//		
+//		FacilityServicesEntity nauticFlush = new FacilityServicesEntity();
+//		nauticFlush.setService(EServiceFacility.NAUTICAL_TOILETTE_FLUSH);
+//		facilitiServiceRepository.save(nauticFlush);
+//		
+//		FacilityServicesEntity market = new FacilityServicesEntity();
+//		market.setService(EServiceFacility.MARKET);
+//		facilitiServiceRepository.save(market);
+//		
 		
 	}
 

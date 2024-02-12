@@ -13,6 +13,7 @@ public enum EServiceFacility {
 	TOLIETTE_FLUSH,
 	NAUTICAL_TOILETTE_FLUSH,
 	MARKET,
+	BUS,
 
 	
 	
